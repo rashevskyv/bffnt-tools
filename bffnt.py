@@ -394,6 +394,87 @@ def decode_sheet_to_png_bc4_gx2(data: bytes, width: int, height: int, out_path: 
             wf.write(header)
             wf.write(buf)
 
+# ---------------- BC4 encode (naive) + GX2 swizzle ----------------
+
+def _encode_bc4_block(pvals: list[int]) -> bytes:
+    """Кодує один 4x4 блок (16 значень 0..255) у BC4_UNORM (8 байт).
+    Наївний енкодер: бере min/max як кінцеві точки і квантує до найближчої палітри.
+    """
+    if not pvals:
+        return b"\x00\x00" + b"\x00" * 6
+    mn = min(pvals)
+    mx = max(pvals)
+    a0 = int(mx)
+    a1 = int(mn)
+    if a0 == a1:
+        # плоский блок
+        bits = 0
+        return bytes([a0 & 0xFF, a1 & 0xFF]) + int(bits).to_bytes(6, 'little')
+    # Палітра для варіанту a0 > a1 (8 значень)
+    palette = [0] * 8
+    palette[0] = a0
+    palette[1] = a1
+    for i in range(1, 7):
+        palette[1 + i] = ((6 - i) * a0 + i * a1 + 3) // 7
+    # Присвоюємо індекси найближчих значень
+    idxs = []
+    for v in pvals:
+        best_i = 0
+        best_d = 1e9
+        for i, pv in enumerate(palette):
+            d = abs(int(v) - int(pv))
+            if d < best_d:
+                best_d = d; best_i = i
+        idxs.append(best_i & 7)
+    bits = 0
+    for i, iv in enumerate(idxs):
+        bits |= (iv & 7) << (3 * i)
+    return bytes([a0 & 0xFF, a1 & 0xFF]) + int(bits).to_bytes(6, 'little')
+
+
+def _swizzle_linear_bc4_to_gx2_blocks(linear_blocks: bytes, width_blocks: int, height_blocks: int, sheet_index: int) -> bytes:
+    out = bytearray(len(linear_blocks))
+    pitch = width_blocks
+    pipe_sw = 0
+    bank_sw = sheet_index & 3
+    for y in range(height_blocks):
+        for x in range(width_blocks):
+            dst = _addr_from_coord_macrotiled_bc4(x, y, pitch, height_blocks, pipe_sw, bank_sw)
+            src = (y * width_blocks + x) * 8
+            out[dst:dst+8] = linear_blocks[src:src+8]
+    return bytes(out)
+
+
+def _encode_png_to_bc4_gx2(img, sheet_w: int, sheet_h: int, sheet_index: int) -> bytes:
+    if img.size != (sheet_w, sheet_h):
+        raise ValueError('Розмір PNG не збігається з очікуваним %dx%d' % (sheet_w, sheet_h))
+    # Вибираємо канал: якщо RGBA — альфа, інакше L
+    if img.mode == 'RGBA':
+        comp = img.getchannel('A')
+    else:
+        comp = img.convert('L')
+    # Кодуємо по блоках 4x4 у лінійний масив
+    bw = sheet_w // 4
+    bh = sheet_h // 4
+    if bw * 4 != sheet_w or bh * 4 != sheet_h:
+        raise ValueError('Розмір аркуша не кратний 4 для BC4')
+    lin = bytearray(bw * bh * 8)
+    pix = comp.load()
+    off = 0
+    for by in range(bh):
+        for bx in range(bw):
+            vals = []
+            for py in range(4):
+                for px in range(4):
+                    x = bx * 4 + px
+                    y = by * 4 + py
+                    vals.append(int(pix[x, y]))
+            blk = _encode_bc4_block(vals)
+            lin[off:off+8] = blk
+            off += 8
+    # Свізл до GX2 макротайлу
+    return _swizzle_linear_bc4_to_gx2_blocks(bytes(lin), bw, bh, sheet_index)
+
 
 def parse_cwdh_chain(buf: bytes, start_off: int, little: bool) -> Dict[int, Dict[str, int]]:
     """Читає ланцюжок CWDH і повертає метрики за індексом гліфа."""
@@ -744,7 +825,7 @@ if __name__ == '__main__':
         except Exception as ex:
             print('ПОПЕРЕДЖЕННЯ: не вдалося оновити CWDH із JSON:', ex)
 
-        # Перевіримо PNG: якщо вони змінені, попередимо і зупинимося (рекомпресія недоступна)
+        # Перекодуємо PNG аркуші назад у BC4_UNORM + GX2-свізл та оновимо дані TGLP
         any_sheet_changed = False
         try:
             sig = raw[0:4]
@@ -754,31 +835,56 @@ if __name__ == '__main__':
             tglp_off = (offs['tglp'] - 8) if offs['tglp'] else find_section(raw, SIG_TGLP)
             tglp, sheets = parse_tglp_and_extract(raw, tglp_off, little, determine_platform(sig, little, version), sig)
             names = meta.get('sheet_png', [])
-            for i, s in enumerate(sheets):
+            # Зчитаємо необхідні поля з TGLP ще раз для sheet_data_off
+            p = tglp_off + 4
+            _section_size, p = read_u32(raw, p, little)
+            p += 2  # cell_w
+            p += 2  # cell_h
+            sheet_count = raw[p]; p += 1
+            p += 1  # max_char_width
+            sheet_size, p = read_u32(raw, p, little)
+            p += 2  # base_line
+            p += 2  # fmt
+            p += 2  # rows
+            p += 2  # cols
+            sheet_w, p = read_u16(raw, p, little)
+            sheet_h, p = read_u16(raw, p, little)
+            sheet_data_off, p = read_u32(raw, p, little)
+
+            for i in range(int(sheet_count)):
                 expected_name = None
                 for nm in names:
                     if nm.startswith(f'sheet_{i}') and nm.endswith('.png'):
                         expected_name = nm
                         break
-                if expected_name:
-                    pth = os.path.join(folder, expected_name)
-                    if os.path.isfile(pth) and _HAS_PIL:
-                        img_png = Image.open(pth)
-                        if '.rot180' in expected_name:
-                            img_png = img_png.rotate(180)
-                        if '.flipY' in expected_name:
-                            img_png = img_png.transpose(Image.FLIP_TOP_BOTTOM)
-                        comp = img_png.getchannel('A') if img_png.mode == 'RGBA' else img_png.convert('L')
-                        origL = _decode_sheet_pixels_bc4_gx2(s, int(tglp['sheet_width']), int(tglp['sheet_height']), i)
-                        if comp.size == origL.size and list(comp.getdata()) != list(origL.getdata()):
-                            print(f'УВАГА: sheet {i} змінено (пікселі відрізняються) — рекомпресія BC4 не підтримується цим інструментом')
-                            any_sheet_changed = True
+                if expected_name is None:
+                    continue
+                pth = os.path.join(folder, expected_name)
+                if not os.path.isfile(pth):
+                    continue
+                if not _HAS_PIL:
+                    raise RuntimeError('Pillow потрібен для перекодування PNG у BC4')
+                img_open = Image.open(pth)
+                # Відкотити суфіксовані трансформації (як у верифікації)
+                if '.rot180' in expected_name:
+                    img_open = img_open.rotate(180)
+                if '.flipY' in expected_name:
+                    img_open = img_open.transpose(Image.FLIP_TOP_BOTTOM)
+                swz = _encode_png_to_bc4_gx2(img_open, int(sheet_w), int(sheet_h), i)
+                if len(swz) != int(sheet_size):
+                    raise ValueError('Невірний розмір закодованого аркуша')
+                pos = int(sheet_data_off) + i * int(sheet_size)
+                buf[pos:pos+int(sheet_size)] = swz
+                # Маркер змін — якщо пікселі відрізнялись від оригіналу
+                try:
+                    origL = _decode_sheet_pixels_bc4_gx2(sheets[i], int(sheet_w), int(sheet_h), i)
+                    comp = (img_open.getchannel('A') if img_open.mode == 'RGBA' else img_open.convert('L'))
+                    if comp.size == origL.size and list(comp.getdata()) != list(origL.getdata()):
+                        any_sheet_changed = True
+                except Exception:
+                    any_sheet_changed = True
         except Exception as ex:
-            print('ПОПЕРЕДЖЕННЯ: перевірка PNG не виконана:', ex)
-
-        if any_sheet_changed:
-            print('ПОМИЛКА: Змінені PNG неможливо запакувати без BC4-енкодера. Поки що підтримується лише оновлення метрик (CWDH).', file=sys.stderr)
-            sys.exit(4)
+            print('ПОПЕРЕДЖЕННЯ: перекодування PNG не виконано:', ex)
 
         out_name = sys.argv[3] if len(sys.argv) >= 4 else meta.get('source_file', 'repacked.bffnt')
         out_path = out_name if os.path.isabs(out_name) else os.path.join(folder, out_name)
@@ -790,9 +896,8 @@ if __name__ == '__main__':
         print('SHA256 original(base64):', h_raw)
         print('SHA256 written:', h_out)
         if h_out == h_raw:
-            print('УВАГА: Вихідний файл біт-ідентичний оригіналу (ймовірно, метрики не змінені).')
+            print('УВАГА: Вихідний файл біт-ідентичний оригіналу (ймовірно, метрики/аркуші не змінені).')
         else:
-            print(f'OK: Запаковано {out_path} (оновлено метрик: {patched_count})')
-            print('ПРИМІТКА: оновлення CMAP/PNG наразі не підтримано.')
+            print(f'OK: Запаковано {out_path} (оновлено метрик: {patched_count}; перекодовано PNG: {"так" if any_sheet_changed else "ні"})')
     else:
         main()
