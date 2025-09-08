@@ -534,6 +534,7 @@ class BffntQtViewer(QtWidgets.QMainWindow):
         self.selected_cell = (gx, gy)
         self.populate_info_panel(gx, gy)
         self.update_overlays()
+        self._ensure_selected_visible()
 
     # ---- widths / overlay ----
     def cell_to_index(self, gx: int, gy: int) -> int:
@@ -713,6 +714,7 @@ class BffntQtViewer(QtWidgets.QMainWindow):
                     self.selected_cell = (gx, gy)
                     self.populate_info_panel(gx, gy)
                     self.update_overlays()
+                    self._ensure_selected_visible()
                     return True
         if key == QtCore.Qt.Key_PageUp:
             row = self.list_png.currentRow()
@@ -764,6 +766,7 @@ class BffntQtViewer(QtWidgets.QMainWindow):
         self.selected_cell = (gx, gy)
         self.populate_info_panel(gx, gy)
         self.update_overlays()
+        self._ensure_selected_visible()
 
     _drag_active = False
     _drag_kind = None  # 'left' | 'glyph' | 'char'
@@ -839,6 +842,26 @@ class BffntQtViewer(QtWidgets.QMainWindow):
         self._drag_active = False
         self._drag_kind = None
         self.unsetCursor()
+
+    def _ensure_selected_visible(self, margin: int = 24):
+        if self.selected_cell is None:
+            return
+        # Prefer ensuring the visible selection rectangle item
+        try:
+            if hasattr(self, 'sel_rect_item') and self.sel_rect_item is not None:
+                self.view.ensureVisible(self.sel_rect_item, margin, margin)
+                return
+        except Exception:
+            pass
+        # Fallback to computing the cell rect in scene coordinates
+        try:
+            gx, gy = self.selected_cell
+            x0 = gx * self.real_w + 1
+            y0 = gy * self.real_h + 1
+            rect = QtCore.QRectF(x0, y0, self.cw, self.ch)
+            self.view.ensureVisible(rect, margin, margin)
+        except Exception:
+            pass
 
     # ---- auto widths ----
     def auto_set_widths_from_image(self):

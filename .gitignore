@@ -4,3 +4,7 @@
 */font.json
 out_dir/
 CKingMain/
+CKingMainL/
+CKingMsg/
+appveyor.yml
+AGENTS.md
