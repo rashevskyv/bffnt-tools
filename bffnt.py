@@ -4,9 +4,9 @@
 
 Використання:
   Розпакування:
-    python3 bffnt.py [--rotate180] [--flipY] <шлях_до_*.bffnt|тека>
+    python3 bffnt.py [-R|--rotate180] [-Y|--flipY] [-r|--recursive] [-a|--all] [-v|--verbose] <шлях_до_*.bffnt|тека>
   Пакування:
-    python3 bffnt.py pack <тека_з_font.json> [вихід.bffnt]
+    python3 bffnt.py pack|p [-v|--verbose] <тека_з_font.json> [вихід.bffnt]
 """
 
 import os
@@ -38,30 +38,42 @@ def _collect_bffnts(base: str, recursive: bool) -> List[str]:
 def main():
     rotate180 = False
     flip_y = False
+    verbose = False
     scan_all = False
     recursive = False
     args = sys.argv[1:]
-    flags = {'--rotate180', '--flipY', '--all', '--r', '-r', '--recursive'}
+    flags = {'--rotate180', '-R', '--flipY', '-Y', '--all', '-a', '--r', '-r', '--recursive', '-v', '--verbose'}
     paths: List[str] = []
 
-    if args and args[0].lower() == 'pack':
+    if args and args[0].lower() in ('pack', 'p'):
         from bffnt_pack import pack_from_json_folder
-        folder = args[1] if len(args) >= 2 else os.path.join(os.path.dirname(__file__), 'CKingMain')
-        out_path = args[2] if len(args) >= 3 else None
-        pack_from_json_folder(folder, out_path)
+        # parse optional -v for pack
+        pack_args = args[1:]
+        pv = False
+        fa = []
+        for a in pack_args:
+            if a in ('-v', '--verbose'):
+                pv = True
+            else:
+                fa.append(a)
+        folder = fa[0] if len(fa) >= 1 else os.path.join(os.path.dirname(__file__), 'CKingMain')
+        out_path = fa[1] if len(fa) >= 2 else None
+        pack_from_json_folder(folder, out_path, verbose=pv)
         return
 
     i = 0
     while i < len(args):
         a = args[i]
-        if a == '--rotate180':
+        if a in ('--rotate180', '-R'):
             rotate180 = True
-        elif a == '--flipY':
+        elif a in ('--flipY', '-Y'):
             flip_y = True
-        elif a == '--all':
+        elif a in ('--all', '-a'):
             scan_all = True
         elif a in ('--r', '-r', '--recursive'):
             recursive = True
+        elif a in ('-v', '--verbose'):
+            verbose = True
         elif a.startswith('-') and a not in flags:
             print('Невідомий прапорець:', a, file=sys.stderr)
             return sys.exit(2)
@@ -88,7 +100,7 @@ def main():
     fail = 0
     for src in targets:
         try:
-            out_dir = unpack_bffnt(src, rotate180=rotate180, flip_y=flip_y)
+            out_dir = unpack_bffnt(src, rotate180=rotate180, flip_y=flip_y, verbose=verbose)
             print(f'OK: {os.path.basename(src)} → {out_dir}')
             ok += 1
         except Exception as ex:
@@ -99,4 +111,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

@@ -1,0 +1,5022 @@
+{
+  "signature": "FFNT",
+  "bom": 65279,
+  "version": 50331648,
+  "header_size": 20,
+  "platform": "Cafe",
+  "finf": {
+    "type": 2,
+    "height": 76,
+    "width": 62,
+    "ascent": 59,
+    "line_feed": 76,
+    "alter_char_index": 0,
+    "default_left": 0,
+    "default_glyph": 62,
+    "default_char": 62,
+    "char_encoding": 1
+  },
+  "tglp": {
+    "cell_width": 62,
+    "cell_height": 74,
+    "max_char_width": 62,
+    "base_line": 58,
+    "sheet_size": 524288,
+    "sheet_count": 2,
+    "format": 12,
+    "rows": 16,
+    "cols": 13,
+    "sheet_width": 1024,
+    "sheet_height": 1024,
+    "sheet_data_off": 8192
+  },
+  "glyphs": [
+    {
+      "codepoint": "U+0020",
+      "char": " ",
+      "index": 0,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 0,
+      "width": {
+        "left": 18,
+        "glyph": 0,
+        "char": 18
+      }
+    },
+    {
+      "codepoint": "U+0021",
+      "char": "!",
+      "index": 1,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 0,
+      "width": {
+        "left": -1,
+        "glyph": 23,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+0022",
+      "char": "\"",
+      "index": 2,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 0,
+      "width": {
+        "left": -2,
+        "glyph": 29,
+        "char": 25
+      }
+    },
+    {
+      "codepoint": "U+0023",
+      "char": "#",
+      "index": 3,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 41,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0024",
+      "char": "$",
+      "index": 4,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 40,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0025",
+      "char": "%",
+      "index": 5,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 0,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+0026",
+      "char": "&",
+      "index": 6,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 46,
+        "char": 38
+      }
+    },
+    {
+      "codepoint": "U+0027",
+      "char": "'",
+      "index": 7,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 0,
+      "width": {
+        "left": -1,
+        "glyph": 19,
+        "char": 18
+      }
+    },
+    {
+      "codepoint": "U+0028",
+      "char": "(",
+      "index": 8,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 0,
+      "width": {
+        "left": -2,
+        "glyph": 25,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+0029",
+      "char": ")",
+      "index": 9,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 25,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+002A",
+      "char": "*",
+      "index": 10,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 31,
+        "char": 25
+      }
+    },
+    {
+      "codepoint": "U+002B",
+      "char": "+",
+      "index": 11,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 0,
+      "width": {
+        "left": -4,
+        "glyph": 42,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+002C",
+      "char": ",",
+      "index": 12,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 0,
+      "width": {
+        "left": -2,
+        "glyph": 22,
+        "char": 18
+      }
+    },
+    {
+      "codepoint": "U+002D",
+      "char": "-",
+      "index": 13,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 31,
+        "char": 25
+      }
+    },
+    {
+      "codepoint": "U+002E",
+      "char": ".",
+      "index": 14,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 0,
+      "width": {
+        "left": -3,
+        "glyph": 23,
+        "char": 18
+      }
+    },
+    {
+      "codepoint": "U+002F",
+      "char": "/",
+      "index": 15,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 0,
+      "width": {
+        "left": -4,
+        "glyph": 30,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+0030",
+      "char": "0",
+      "index": 16,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 41,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0031",
+      "char": "1",
+      "index": 17,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 1,
+      "width": {
+        "left": 2,
+        "glyph": 33,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0032",
+      "char": "2",
+      "index": 18,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 44,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0033",
+      "char": "3",
+      "index": 19,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 41,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0034",
+      "char": "4",
+      "index": 20,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 1,
+      "width": {
+        "left": -3,
+        "glyph": 46,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0035",
+      "char": "5",
+      "index": 21,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 1,
+      "width": {
+        "left": 0,
+        "glyph": 39,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0036",
+      "char": "6",
+      "index": 22,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 41,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0037",
+      "char": "7",
+      "index": 23,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 41,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0038",
+      "char": "8",
+      "index": 24,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 1,
+      "width": {
+        "left": 0,
+        "glyph": 40,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+0039",
+      "char": "9",
+      "index": 25,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 43,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+003A",
+      "char": ":",
+      "index": 26,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 23,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+003B",
+      "char": ";",
+      "index": 27,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 24,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+003C",
+      "char": "<",
+      "index": 28,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 36,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+003D",
+      "char": "=",
+      "index": 29,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 38,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+003E",
+      "char": ">",
+      "index": 30,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 1,
+      "width": {
+        "left": 0,
+        "glyph": 36,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+003F",
+      "char": "?",
+      "index": 31,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 38,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0040",
+      "char": "@",
+      "index": 32,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 2,
+      "width": {
+        "left": -3,
+        "glyph": 50,
+        "char": 45
+      }
+    },
+    {
+      "codepoint": "U+0041",
+      "char": "A",
+      "index": 33,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 2,
+      "width": {
+        "left": -5,
+        "glyph": 48,
+        "char": 38
+      }
+    },
+    {
+      "codepoint": "U+0042",
+      "char": "B",
+      "index": 34,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 41,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+0043",
+      "char": "C",
+      "index": 35,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 2,
+      "width": {
+        "left": -3,
+        "glyph": 43,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+0044",
+      "char": "D",
+      "index": 36,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 43,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+0045",
+      "char": "E",
+      "index": 37,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 38,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0046",
+      "char": "F",
+      "index": 38,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 36,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0047",
+      "char": "G",
+      "index": 39,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 2,
+      "width": {
+        "left": -3,
+        "glyph": 44,
+        "char": 40
+      }
+    },
+    {
+      "codepoint": "U+0048",
+      "char": "H",
+      "index": 40,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 42,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+0049",
+      "char": "I",
+      "index": 41,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 2,
+      "width": {
+        "left": 0,
+        "glyph": 19,
+        "char": 19
+      }
+    },
+    {
+      "codepoint": "U+004A",
+      "char": "J",
+      "index": 42,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 2,
+      "width": {
+        "left": -4,
+        "glyph": 30,
+        "char": 26
+      }
+    },
+    {
+      "codepoint": "U+004B",
+      "char": "K",
+      "index": 43,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 42,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+004C",
+      "char": "L",
+      "index": 44,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+004D",
+      "char": "M",
+      "index": 45,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 49,
+        "char": 48
+      }
+    },
+    {
+      "codepoint": "U+004E",
+      "char": "N",
+      "index": 46,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 41,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+004F",
+      "char": "O",
+      "index": 47,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 2,
+      "width": {
+        "left": -3,
+        "glyph": 46,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+0050",
+      "char": "P",
+      "index": 48,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 3,
+      "width": {
+        "left": -1,
+        "glyph": 41,
+        "char": 36
+      }
+    },
+    {
+      "codepoint": "U+0051",
+      "char": "Q",
+      "index": 49,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 3,
+      "width": {
+        "left": -3,
+        "glyph": 46,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+0052",
+      "char": "R",
+      "index": 50,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 3,
+      "width": {
+        "left": -1,
+        "glyph": 41,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+0053",
+      "char": "S",
+      "index": 51,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 3,
+      "width": {
+        "left": -3,
+        "glyph": 41,
+        "char": 36
+      }
+    },
+    {
+      "codepoint": "U+0054",
+      "char": "T",
+      "index": 52,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 41,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+0055",
+      "char": "U",
+      "index": 53,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 3,
+      "width": {
+        "left": -1,
+        "glyph": 42,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+0056",
+      "char": "V",
+      "index": 54,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 45,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+0057",
+      "char": "W",
+      "index": 55,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 57,
+        "char": 49
+      }
+    },
+    {
+      "codepoint": "U+0058",
+      "char": "X",
+      "index": 56,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 43,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0059",
+      "char": "Y",
+      "index": 57,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 3,
+      "width": {
+        "left": -5,
+        "glyph": 43,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+005A",
+      "char": "Z",
+      "index": 58,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 3,
+      "width": {
+        "left": -2,
+        "glyph": 41,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+005B",
+      "char": "[",
+      "index": 59,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 3,
+      "width": {
+        "left": -1,
+        "glyph": 24,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+005C",
+      "char": "\\",
+      "index": 60,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 3,
+      "width": {
+        "left": -5,
+        "glyph": 30,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+005D",
+      "char": "]",
+      "index": 61,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 24,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+005E",
+      "char": "^",
+      "index": 62,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 3,
+      "width": {
+        "left": 0,
+        "glyph": 35,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+005F",
+      "char": "_",
+      "index": 63,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 34,
+        "char": 25
+      }
+    },
+    {
+      "codepoint": "U+0060",
+      "char": "`",
+      "index": 64,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 25,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+0061",
+      "char": "a",
+      "index": 65,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0062",
+      "char": "b",
+      "index": 66,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0063",
+      "char": "c",
+      "index": 67,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 37,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0064",
+      "char": "d",
+      "index": 68,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 41,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0065",
+      "char": "e",
+      "index": 69,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 38,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0066",
+      "char": "f",
+      "index": 70,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 30,
+        "char": 24
+      }
+    },
+    {
+      "codepoint": "U+0067",
+      "char": "g",
+      "index": 71,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0068",
+      "char": "h",
+      "index": 72,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 36,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0069",
+      "char": "i",
+      "index": 73,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 23,
+        "char": 16
+      }
+    },
+    {
+      "codepoint": "U+006A",
+      "char": "j",
+      "index": 74,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 4,
+      "width": {
+        "left": -6,
+        "glyph": 26,
+        "char": 16
+      }
+    },
+    {
+      "codepoint": "U+006B",
+      "char": "k",
+      "index": 75,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 4,
+      "width": {
+        "left": -1,
+        "glyph": 36,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+006C",
+      "char": "l",
+      "index": 76,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 4,
+      "width": {
+        "left": -1,
+        "glyph": 19,
+        "char": 16
+      }
+    },
+    {
+      "codepoint": "U+006D",
+      "char": "m",
+      "index": 77,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 50,
+        "char": 47
+      }
+    },
+    {
+      "codepoint": "U+006E",
+      "char": "n",
+      "index": 78,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 36,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+006F",
+      "char": "o",
+      "index": 79,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 4,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0070",
+      "char": "p",
+      "index": 80,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0071",
+      "char": "q",
+      "index": 81,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 5,
+      "width": {
+        "left": -3,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0072",
+      "char": "r",
+      "index": 82,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 29,
+        "char": 25
+      }
+    },
+    {
+      "codepoint": "U+0073",
+      "char": "s",
+      "index": 83,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 5,
+      "width": {
+        "left": -4,
+        "glyph": 36,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0074",
+      "char": "t",
+      "index": 84,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 5,
+      "width": {
+        "left": -4,
+        "glyph": 29,
+        "char": 21
+      }
+    },
+    {
+      "codepoint": "U+0075",
+      "char": "u",
+      "index": 85,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 40,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0076",
+      "char": "v",
+      "index": 86,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 5,
+      "width": {
+        "left": -4,
+        "glyph": 37,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0077",
+      "char": "w",
+      "index": 87,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 5,
+      "width": {
+        "left": -4,
+        "glyph": 51,
+        "char": 42
+      }
+    },
+    {
+      "codepoint": "U+0078",
+      "char": "x",
+      "index": 88,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 5,
+      "width": {
+        "left": -5,
+        "glyph": 38,
+        "char": 28
+      }
+    },
+    {
+      "codepoint": "U+0079",
+      "char": "y",
+      "index": 89,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 5,
+      "width": {
+        "left": -4,
+        "glyph": 38,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+007A",
+      "char": "z",
+      "index": 90,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 5,
+      "width": {
+        "left": -3,
+        "glyph": 36,
+        "char": 28
+      }
+    },
+    {
+      "codepoint": "U+007B",
+      "char": "{",
+      "index": 91,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 26,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+007C",
+      "char": "|",
+      "index": 92,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 5,
+      "width": {
+        "left": 1,
+        "glyph": 16,
+        "char": 18
+      }
+    },
+    {
+      "codepoint": "U+007D",
+      "char": "}",
+      "index": 93,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 5,
+      "width": {
+        "left": -4,
+        "glyph": 26,
+        "char": 20
+      }
+    },
+    {
+      "codepoint": "U+007E",
+      "char": "~",
+      "index": 94,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 39,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+00A1",
+      "char": "¡",
+      "index": 95,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 5,
+      "width": {
+        "left": -1,
+        "glyph": 22,
+        "char": 21
+      }
+    },
+    {
+      "codepoint": "U+00A9",
+      "char": "©",
+      "index": 96,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 45,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+00B0",
+      "char": "°",
+      "index": 97,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 23,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+00BA",
+      "char": "º",
+      "index": 98,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 24,
+        "char": 24
+      }
+    },
+    {
+      "codepoint": "U+00C1",
+      "char": "Á",
+      "index": 99,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 6,
+      "width": {
+        "left": -5,
+        "glyph": 48,
+        "char": 38
+      }
+    },
+    {
+      "codepoint": "U+00C9",
+      "char": "É",
+      "index": 100,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 38,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+00CE",
+      "char": "Î",
+      "index": 101,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 6,
+      "width": {
+        "left": -4,
+        "glyph": 28,
+        "char": 19
+      }
+    },
+    {
+      "codepoint": "U+00D6",
+      "char": "Ö",
+      "index": 102,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 46,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+00D7",
+      "char": "×",
+      "index": 103,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 6,
+      "width": {
+        "left": 2,
+        "glyph": 44,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+00DC",
+      "char": "Ü",
+      "index": 104,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 42,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+00DF",
+      "char": "ß",
+      "index": 105,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 38,
+        "char": 36
+      }
+    },
+    {
+      "codepoint": "U+00E0",
+      "char": "à",
+      "index": 106,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+00E1",
+      "char": "á",
+      "index": 107,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+00E2",
+      "char": "â",
+      "index": 108,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+00E4",
+      "char": "ä",
+      "index": 109,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+00E7",
+      "char": "ç",
+      "index": 110,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 37,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+00E8",
+      "char": "è",
+      "index": 111,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 38,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+00E9",
+      "char": "é",
+      "index": 112,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 7,
+      "width": {
+        "left": -3,
+        "glyph": 38,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+00EA",
+      "char": "ê",
+      "index": 113,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 7,
+      "width": {
+        "left": -3,
+        "glyph": 38,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+00EC",
+      "char": "ì",
+      "index": 114,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 7,
+      "width": {
+        "left": -4,
+        "glyph": 24,
+        "char": 16
+      }
+    },
+    {
+      "codepoint": "U+00ED",
+      "char": "í",
+      "index": 115,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 7,
+      "width": {
+        "left": -4,
+        "glyph": 24,
+        "char": 16
+      }
+    },
+    {
+      "codepoint": "U+00EE",
+      "char": "î",
+      "index": 116,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 7,
+      "width": {
+        "left": -6,
+        "glyph": 28,
+        "char": 16
+      }
+    },
+    {
+      "codepoint": "U+00F3",
+      "char": "ó",
+      "index": 117,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 7,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+00F6",
+      "char": "ö",
+      "index": 118,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 7,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+00FC",
+      "char": "ü",
+      "index": 119,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 40,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+3000",
+      "char": "　",
+      "index": 120,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 7,
+      "width": {
+        "left": 50,
+        "glyph": 0,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+0401",
+      "char": "Ё",
+      "index": 121,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 7,
+      "width": {
+        "left": -1,
+        "glyph": 38,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0402",
+      "char": "Ђ",
+      "index": 122,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+0403",
+      "char": "Ѓ",
+      "index": 123,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+0405",
+      "char": "Ѕ",
+      "index": 125,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+0408",
+      "char": "Ј",
+      "index": 128,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+0409",
+      "char": "Љ",
+      "index": 129,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+040A",
+      "char": "Њ",
+      "index": 130,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+040B",
+      "char": "Ћ",
+      "index": 131,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+040C",
+      "char": "Ќ",
+      "index": 132,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+040D",
+      "char": "Ѝ",
+      "index": 133,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+040E",
+      "char": "Ў",
+      "index": 134,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+040F",
+      "char": "Џ",
+      "index": 135,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 0,
+        "char": 0
+      }
+    },
+    {
+      "codepoint": "U+0410",
+      "char": "А",
+      "index": 136,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 8,
+      "width": {
+        "left": -5,
+        "glyph": 48,
+        "char": 38
+      }
+    },
+    {
+      "codepoint": "U+0411",
+      "char": "Б",
+      "index": 137,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0412",
+      "char": "В",
+      "index": 138,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0413",
+      "char": "Г",
+      "index": 139,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 8,
+      "width": {
+        "left": 1,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0490",
+      "char": "Ґ",
+      "index": 140,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 8,
+      "width": {
+        "left": 1,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0414",
+      "char": "Д",
+      "index": 141,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 8,
+      "width": {
+        "left": 1,
+        "glyph": 44,
+        "char": 40
+      }
+    },
+    {
+      "codepoint": "U+0415",
+      "char": "Е",
+      "index": 142,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 8,
+      "width": {
+        "left": 0,
+        "glyph": 34,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+0404",
+      "char": "Є",
+      "index": 143,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0416",
+      "char": "Ж",
+      "index": 144,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 52,
+        "char": 48
+      }
+    },
+    {
+      "codepoint": "U+0417",
+      "char": "З",
+      "index": 145,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0418",
+      "char": "И",
+      "index": 146,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0406",
+      "char": "І",
+      "index": 147,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 9,
+      "width": {
+        "left": 1,
+        "glyph": 18,
+        "char": 14
+      }
+    },
+    {
+      "codepoint": "U+0407",
+      "char": "Ї",
+      "index": 148,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 25,
+        "char": 21
+      }
+    },
+    {
+      "codepoint": "U+0419",
+      "char": "Й",
+      "index": 149,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+041A",
+      "char": "К",
+      "index": 150,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+041B",
+      "char": "Л",
+      "index": 151,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+041C",
+      "char": "М",
+      "index": 152,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 44,
+        "char": 40
+      }
+    },
+    {
+      "codepoint": "U+041D",
+      "char": "Н",
+      "index": 153,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+041E",
+      "char": "О",
+      "index": 154,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 41,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+041F",
+      "char": "П",
+      "index": 155,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 35,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0420",
+      "char": "Р",
+      "index": 156,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+0421",
+      "char": "С",
+      "index": 157,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 39,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0422",
+      "char": "Т",
+      "index": 158,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 9,
+      "width": {
+        "left": 1,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0423",
+      "char": "У",
+      "index": 159,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 9,
+      "width": {
+        "left": -4,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0424",
+      "char": "Ф",
+      "index": 160,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 46,
+        "char": 42
+      }
+    },
+    {
+      "codepoint": "U+0425",
+      "char": "Х",
+      "index": 161,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 10,
+      "width": {
+        "left": -4,
+        "glyph": 39,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0426",
+      "char": "Ц",
+      "index": 162,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 39,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0427",
+      "char": "Ч",
+      "index": 163,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 38,
+        "char": 34
+      }
+    },
+    {
+      "codepoint": "U+0428",
+      "char": "Ш",
+      "index": 164,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 45,
+        "char": 41
+      }
+    },
+    {
+      "codepoint": "U+0429",
+      "char": "Щ",
+      "index": 165,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 10,
+      "width": {
+        "left": 0,
+        "glyph": 46,
+        "char": 42
+      }
+    },
+    {
+      "codepoint": "U+042C",
+      "char": "Ь",
+      "index": 166,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 10,
+      "width": {
+        "left": 0,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+042E",
+      "char": "Ю",
+      "index": 167,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 50,
+        "char": 46
+      }
+    },
+    {
+      "codepoint": "U+042F",
+      "char": "Я",
+      "index": 168,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+0430",
+      "char": "а",
+      "index": 169,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+0431",
+      "char": "б",
+      "index": 170,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 10,
+      "width": {
+        "left": -1,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0432",
+      "char": "в",
+      "index": 171,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 35,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0433",
+      "char": "г",
+      "index": 172,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 30,
+        "char": 26
+      }
+    },
+    {
+      "codepoint": "U+0491",
+      "char": "ґ",
+      "index": 173,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 30,
+        "char": 26
+      }
+    },
+    {
+      "codepoint": "U+0434",
+      "char": "д",
+      "index": 174,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 41,
+        "char": 37
+      }
+    },
+    {
+      "codepoint": "U+0435",
+      "char": "е",
+      "index": 175,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 10,
+      "width": {
+        "left": -1,
+        "glyph": 35,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0454",
+      "char": "є",
+      "index": 176,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 11,
+      "width": {
+        "left": -3,
+        "glyph": 35,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0436",
+      "char": "ж",
+      "index": 177,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 11,
+      "width": {
+        "left": 2,
+        "glyph": 47,
+        "char": 43
+      }
+    },
+    {
+      "codepoint": "U+0437",
+      "char": "з",
+      "index": 178,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 11,
+      "width": {
+        "left": 1,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+0438",
+      "char": "и",
+      "index": 179,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 11,
+      "width": {
+        "left": 5,
+        "glyph": 39,
+        "char": 35
+      }
+    },
+    {
+      "codepoint": "U+0456",
+      "char": "і",
+      "index": 180,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 11,
+      "width": {
+        "left": -3,
+        "glyph": 21,
+        "char": 17
+      }
+    },
+    {
+      "codepoint": "U+0457",
+      "char": "ї",
+      "index": 181,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 11,
+      "width": {
+        "left": -4,
+        "glyph": 26,
+        "char": 22
+      }
+    },
+    {
+      "codepoint": "U+0439",
+      "char": "й",
+      "index": 182,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 11,
+      "width": {
+        "left": 0,
+        "glyph": 34,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+043A",
+      "char": "к",
+      "index": 183,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 11,
+      "width": {
+        "left": 1,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+043B",
+      "char": "л",
+      "index": 184,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 11,
+      "width": {
+        "left": 1,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+043C",
+      "char": "м",
+      "index": 185,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 11,
+      "width": {
+        "left": 0,
+        "glyph": 37,
+        "char": 33
+      }
+    },
+    {
+      "codepoint": "U+043D",
+      "char": "н",
+      "index": 186,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 11,
+      "width": {
+        "left": 1,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+043E",
+      "char": "о",
+      "index": 187,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 11,
+      "width": {
+        "left": -3,
+        "glyph": 35,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+043F",
+      "char": "п",
+      "index": 188,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 11,
+      "width": {
+        "left": 0,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0440",
+      "char": "р",
+      "index": 189,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 11,
+      "width": {
+        "left": 1,
+        "glyph": 35,
+        "char": 31
+      }
+    },
+    {
+      "codepoint": "U+0441",
+      "char": "с",
+      "index": 190,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 11,
+      "width": {
+        "left": -3,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0442",
+      "char": "т",
+      "index": 191,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 11,
+      "width": {
+        "left": -4,
+        "glyph": 34,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+0443",
+      "char": "у",
+      "index": 192,
+      "sheet": 0,
+      "grid_x": 0,
+      "grid_y": 12,
+      "width": {
+        "left": -3,
+        "glyph": 34,
+        "char": 30
+      }
+    },
+    {
+      "codepoint": "U+0444",
+      "char": "ф",
+      "index": 193,
+      "sheet": 0,
+      "grid_x": 1,
+      "grid_y": 12,
+      "width": {
+        "left": -3,
+        "glyph": 51,
+        "char": 47
+      }
+    },
+    {
+      "codepoint": "U+0445",
+      "char": "х",
+      "index": 194,
+      "sheet": 0,
+      "grid_x": 2,
+      "grid_y": 12,
+      "width": {
+        "left": -5,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0446",
+      "char": "ц",
+      "index": 195,
+      "sheet": 0,
+      "grid_x": 3,
+      "grid_y": 12,
+      "width": {
+        "left": 0,
+        "glyph": 36,
+        "char": 32
+      }
+    },
+    {
+      "codepoint": "U+0447",
+      "char": "ч",
+      "index": 196,
+      "sheet": 0,
+      "grid_x": 4,
+      "grid_y": 12,
+      "width": {
+        "left": 0,
+        "glyph": 31,
+        "char": 27
+      }
+    },
+    {
+      "codepoint": "U+0448",
+      "char": "ш",
+      "index": 197,
+      "sheet": 0,
+      "grid_x": 5,
+      "grid_y": 12,
+      "width": {
+        "left": 0,
+        "glyph": 40,
+        "char": 36
+      }
+    },
+    {
+      "codepoint": "U+0449",
+      "char": "щ",
+      "index": 198,
+      "sheet": 0,
+      "grid_x": 6,
+      "grid_y": 12,
+      "width": {
+        "left": 0,
+        "glyph": 43,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+044C",
+      "char": "ь",
+      "index": 199,
+      "sheet": 0,
+      "grid_x": 7,
+      "grid_y": 12,
+      "width": {
+        "left": 0,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+044E",
+      "char": "ю",
+      "index": 200,
+      "sheet": 0,
+      "grid_x": 8,
+      "grid_y": 12,
+      "width": {
+        "left": 0,
+        "glyph": 43,
+        "char": 39
+      }
+    },
+    {
+      "codepoint": "U+044F",
+      "char": "я",
+      "index": 201,
+      "sheet": 0,
+      "grid_x": 9,
+      "grid_y": 12,
+      "width": {
+        "left": -3,
+        "glyph": 33,
+        "char": 29
+      }
+    },
+    {
+      "codepoint": "U+0452",
+      "char": "ђ",
+      "index": 202,
+      "sheet": 0,
+      "grid_x": 10,
+      "grid_y": 12,
+      "width": {
+        "left": -1,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+0453",
+      "char": "ѓ",
+      "index": 203,
+      "sheet": 0,
+      "grid_x": 11,
+      "grid_y": 12,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+309B",
+      "char": "゛",
+      "index": 204,
+      "sheet": 0,
+      "grid_x": 12,
+      "grid_y": 12,
+      "width": {
+        "left": -1,
+        "glyph": 22,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+309C",
+      "char": "゜",
+      "index": 205,
+      "sheet": 0,
+      "grid_x": 13,
+      "grid_y": 12,
+      "width": {
+        "left": -2,
+        "glyph": 21,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+309D",
+      "char": "ゝ",
+      "index": 206,
+      "sheet": 0,
+      "grid_x": 14,
+      "grid_y": 12,
+      "width": {
+        "left": 8,
+        "glyph": 35,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+309E",
+      "char": "ゞ",
+      "index": 207,
+      "sheet": 0,
+      "grid_x": 15,
+      "grid_y": 12,
+      "width": {
+        "left": 8,
+        "glyph": 37,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A1",
+      "char": "ァ",
+      "index": 208,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 0,
+      "width": {
+        "left": 6,
+        "glyph": 41,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A2",
+      "char": "ア",
+      "index": 209,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 0,
+      "width": {
+        "left": 1,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A3",
+      "char": "ィ",
+      "index": 210,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 0,
+      "width": {
+        "left": 4,
+        "glyph": 40,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A4",
+      "char": "イ",
+      "index": 211,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 0,
+      "width": {
+        "left": -1,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A5",
+      "char": "ゥ",
+      "index": 212,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 0,
+      "width": {
+        "left": 6,
+        "glyph": 40,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A6",
+      "char": "ウ",
+      "index": 213,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 0,
+      "width": {
+        "left": 1,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A7",
+      "char": "ェ",
+      "index": 214,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 0,
+      "width": {
+        "left": 4,
+        "glyph": 42,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A8",
+      "char": "エ",
+      "index": 215,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 0,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30A9",
+      "char": "ォ",
+      "index": 216,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 0,
+      "width": {
+        "left": 6,
+        "glyph": 39,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30AA",
+      "char": "オ",
+      "index": 217,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 0,
+      "width": {
+        "left": 1,
+        "glyph": 49,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30AB",
+      "char": "カ",
+      "index": 218,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 0,
+      "width": {
+        "left": 0,
+        "glyph": 49,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30AC",
+      "char": "ガ",
+      "index": 219,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 0,
+      "width": {
+        "left": 0,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30AD",
+      "char": "キ",
+      "index": 220,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 0,
+      "width": {
+        "left": 0,
+        "glyph": 49,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30AE",
+      "char": "ギ",
+      "index": 221,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 0,
+      "width": {
+        "left": 0,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30AF",
+      "char": "ク",
+      "index": 222,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 0,
+      "width": {
+        "left": -2,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B0",
+      "char": "グ",
+      "index": 223,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 0,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B1",
+      "char": "ケ",
+      "index": 224,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 1,
+      "width": {
+        "left": -3,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B2",
+      "char": "ゲ",
+      "index": 225,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 1,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B3",
+      "char": "コ",
+      "index": 226,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 1,
+      "width": {
+        "left": 2,
+        "glyph": 47,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B4",
+      "char": "ゴ",
+      "index": 227,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 1,
+      "width": {
+        "left": 2,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B5",
+      "char": "サ",
+      "index": 228,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B6",
+      "char": "ザ",
+      "index": 229,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 1,
+      "width": {
+        "left": -3,
+        "glyph": 59,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B7",
+      "char": "シ",
+      "index": 230,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 1,
+      "width": {
+        "left": 1,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B8",
+      "char": "ジ",
+      "index": 231,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 1,
+      "width": {
+        "left": 1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30B9",
+      "char": "ス",
+      "index": 232,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30BA",
+      "char": "ズ",
+      "index": 233,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30BB",
+      "char": "セ",
+      "index": 234,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30BC",
+      "char": "ゼ",
+      "index": 235,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 1,
+      "width": {
+        "left": -2,
+        "glyph": 57,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30BD",
+      "char": "ソ",
+      "index": 236,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 1,
+      "width": {
+        "left": 1,
+        "glyph": 49,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30BE",
+      "char": "ゾ",
+      "index": 237,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 1,
+      "width": {
+        "left": 0,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30BF",
+      "char": "タ",
+      "index": 238,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C0",
+      "char": "ダ",
+      "index": 239,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 1,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C1",
+      "char": "チ",
+      "index": 240,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C2",
+      "char": "ヂ",
+      "index": 241,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C3",
+      "char": "ッ",
+      "index": 242,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 2,
+      "width": {
+        "left": 4,
+        "glyph": 42,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C4",
+      "char": "ツ",
+      "index": 243,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C5",
+      "char": "ヅ",
+      "index": 244,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 2,
+      "width": {
+        "left": -2,
+        "glyph": 59,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C6",
+      "char": "テ",
+      "index": 245,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C7",
+      "char": "デ",
+      "index": 246,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C8",
+      "char": "ト",
+      "index": 247,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 2,
+      "width": {
+        "left": 11,
+        "glyph": 39,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30C9",
+      "char": "ド",
+      "index": 248,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 2,
+      "width": {
+        "left": 11,
+        "glyph": 40,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30CA",
+      "char": "ナ",
+      "index": 249,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30CB",
+      "char": "ニ",
+      "index": 250,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 2,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30CC",
+      "char": "ヌ",
+      "index": 251,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 2,
+      "width": {
+        "left": 1,
+        "glyph": 48,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30CD",
+      "char": "ネ",
+      "index": 252,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 2,
+      "width": {
+        "left": -2,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30CE",
+      "char": "ノ",
+      "index": 253,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 2,
+      "width": {
+        "left": 3,
+        "glyph": 43,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30CF",
+      "char": "ハ",
+      "index": 254,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 2,
+      "width": {
+        "left": -3,
+        "glyph": 57,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D0",
+      "char": "バ",
+      "index": 255,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 2,
+      "width": {
+        "left": -3,
+        "glyph": 57,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D1",
+      "char": "パ",
+      "index": 256,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 3,
+      "width": {
+        "left": -3,
+        "glyph": 57,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D2",
+      "char": "ヒ",
+      "index": 257,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 3,
+      "width": {
+        "left": 4,
+        "glyph": 44,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D3",
+      "char": "ビ",
+      "index": 258,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 3,
+      "width": {
+        "left": 4,
+        "glyph": 48,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D4",
+      "char": "ピ",
+      "index": 259,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 3,
+      "width": {
+        "left": 4,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D5",
+      "char": "フ",
+      "index": 260,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 3,
+      "width": {
+        "left": 2,
+        "glyph": 48,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D6",
+      "char": "ブ",
+      "index": 261,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 3,
+      "width": {
+        "left": 0,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D7",
+      "char": "プ",
+      "index": 262,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 3,
+      "width": {
+        "left": 0,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D8",
+      "char": "ヘ",
+      "index": 263,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 58,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30D9",
+      "char": "ベ",
+      "index": 264,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 58,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30DA",
+      "char": "ペ",
+      "index": 265,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 3,
+      "width": {
+        "left": -4,
+        "glyph": 58,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30DB",
+      "char": "ホ",
+      "index": 266,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 3,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30DC",
+      "char": "ボ",
+      "index": 267,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 3,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30DD",
+      "char": "ポ",
+      "index": 268,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 3,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30DE",
+      "char": "マ",
+      "index": 269,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 3,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30DF",
+      "char": "ミ",
+      "index": 270,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 3,
+      "width": {
+        "left": 2,
+        "glyph": 46,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E0",
+      "char": "ム",
+      "index": 271,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 3,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E1",
+      "char": "メ",
+      "index": 272,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 4,
+      "width": {
+        "left": 1,
+        "glyph": 48,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E2",
+      "char": "モ",
+      "index": 273,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 4,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E3",
+      "char": "ャ",
+      "index": 274,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 4,
+      "width": {
+        "left": 4,
+        "glyph": 41,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E4",
+      "char": "ヤ",
+      "index": 275,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 4,
+      "width": {
+        "left": -1,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E5",
+      "char": "ュ",
+      "index": 276,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 4,
+      "width": {
+        "left": 4,
+        "glyph": 43,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E6",
+      "char": "ユ",
+      "index": 277,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E7",
+      "char": "ョ",
+      "index": 278,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 4,
+      "width": {
+        "left": 6,
+        "glyph": 38,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E8",
+      "char": "ヨ",
+      "index": 279,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 4,
+      "width": {
+        "left": 1,
+        "glyph": 47,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30E9",
+      "char": "ラ",
+      "index": 280,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 4,
+      "width": {
+        "left": 0,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30EA",
+      "char": "リ",
+      "index": 281,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 4,
+      "width": {
+        "left": 4,
+        "glyph": 42,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30EB",
+      "char": "ル",
+      "index": 282,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 4,
+      "width": {
+        "left": -2,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30EC",
+      "char": "レ",
+      "index": 283,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 4,
+      "width": {
+        "left": 10,
+        "glyph": 41,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30ED",
+      "char": "ロ",
+      "index": 284,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 4,
+      "width": {
+        "left": 1,
+        "glyph": 49,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30EE",
+      "char": "ヮ",
+      "index": 285,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 4,
+      "width": {
+        "left": 5,
+        "glyph": 40,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30EF",
+      "char": "ワ",
+      "index": 286,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 4,
+      "width": {
+        "left": 0,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F0",
+      "char": "ヰ",
+      "index": 287,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 4,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F1",
+      "char": "ヱ",
+      "index": 288,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F2",
+      "char": "ヲ",
+      "index": 289,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 5,
+      "width": {
+        "left": 2,
+        "glyph": 48,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F3",
+      "char": "ン",
+      "index": 290,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 5,
+      "width": {
+        "left": 0,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F4",
+      "char": "ヴ",
+      "index": 291,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 5,
+      "width": {
+        "left": 1,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F5",
+      "char": "ヵ",
+      "index": 292,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 5,
+      "width": {
+        "left": 5,
+        "glyph": 39,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30F6",
+      "char": "ヶ",
+      "index": 293,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 5,
+      "width": {
+        "left": 3,
+        "glyph": 43,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30FB",
+      "char": "・",
+      "index": 294,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 5,
+      "width": {
+        "left": 12,
+        "glyph": 27,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30FC",
+      "char": "ー",
+      "index": 295,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 5,
+      "width": {
+        "left": -1,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30FD",
+      "char": "ヽ",
+      "index": 296,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 5,
+      "width": {
+        "left": 8,
+        "glyph": 35,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+30FE",
+      "char": "ヾ",
+      "index": 297,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 5,
+      "width": {
+        "left": 8,
+        "glyph": 37,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+4E00",
+      "char": "一",
+      "index": 298,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 5,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+4E03",
+      "char": "七",
+      "index": 299,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 5,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+4E09",
+      "char": "三",
+      "index": 300,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 5,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+4E8C",
+      "char": "二",
+      "index": 301,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 5,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+4E94",
+      "char": "五",
+      "index": 302,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+516D",
+      "char": "六",
+      "index": 303,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 5,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5317",
+      "char": "北",
+      "index": 304,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5357",
+      "char": "南",
+      "index": 305,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+53F0",
+      "char": "台",
+      "index": 306,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5504",
+      "char": "唄",
+      "index": 307,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+56DB",
+      "char": "四",
+      "index": 308,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 6,
+      "width": {
+        "left": 0,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+56FD",
+      "char": "国",
+      "index": 309,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 6,
+      "width": {
+        "left": 0,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5730",
+      "char": "地",
+      "index": 310,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+57CE",
+      "char": "城",
+      "index": 311,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5834",
+      "char": "場",
+      "index": 312,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5854",
+      "char": "塔",
+      "index": 313,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 6,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5916",
+      "char": "外",
+      "index": 314,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+591C",
+      "char": "夜",
+      "index": 315,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5927",
+      "char": "大",
+      "index": 316,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5996",
+      "char": "妖",
+      "index": 317,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5B50",
+      "char": "子",
+      "index": 318,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 6,
+      "width": {
+        "left": -2,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5C4B",
+      "char": "屋",
+      "index": 319,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 6,
+      "width": {
+        "left": -1,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5C71",
+      "char": "山",
+      "index": 320,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5CA9",
+      "char": "岩",
+      "index": 321,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5CF6",
+      "char": "島",
+      "index": 322,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5DE8",
+      "char": "巨",
+      "index": 323,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5E8F",
+      "char": "序",
+      "index": 324,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+5F62",
+      "char": "形",
+      "index": 325,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6226",
+      "char": "戦",
+      "index": 326,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+64CD",
+      "char": "操",
+      "index": 327,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 7,
+      "width": {
+        "left": -3,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+65AD",
+      "char": "断",
+      "index": 328,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 7,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+65C5",
+      "char": "旅",
+      "index": 329,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+661F",
+      "char": "星",
+      "index": 330,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 7,
+      "width": {
+        "left": 0,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+663C",
+      "char": "昼",
+      "index": 331,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6642",
+      "char": "時",
+      "index": 332,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 7,
+      "width": {
+        "left": -1,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6700",
+      "char": "最",
+      "index": 333,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6708",
+      "char": "月",
+      "index": 334,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 7,
+      "width": {
+        "left": -2,
+        "glyph": 50,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6771",
+      "char": "東",
+      "index": 335,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 7,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+68EE",
+      "char": "森",
+      "index": 336,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 8,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6BB5",
+      "char": "段",
+      "index": 337,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6BBF",
+      "char": "殿",
+      "index": 338,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 8,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6C37",
+      "char": "氷",
+      "index": 339,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+6E21",
+      "char": "渡",
+      "index": 340,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+706B",
+      "char": "火",
+      "index": 341,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 8,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+7363",
+      "char": "獣",
+      "index": 342,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 8,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+738B",
+      "char": "王",
+      "index": 343,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 8,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+75BE",
+      "char": "疾",
+      "index": 344,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+76EE",
+      "char": "目",
+      "index": 345,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 8,
+      "width": {
+        "left": 2,
+        "glyph": 47,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+77F3",
+      "char": "石",
+      "index": 346,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 8,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+795E",
+      "char": "神",
+      "index": 347,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+7981",
+      "char": "禁",
+      "index": 348,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 8,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+7ADC",
+      "char": "竜",
+      "index": 349,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 8,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+7AE0",
+      "char": "章",
+      "index": 350,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 8,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+7CBE",
+      "char": "精",
+      "index": 351,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 8,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+8239",
+      "char": "船",
+      "index": 352,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+884C",
+      "char": "行",
+      "index": 353,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+897F",
+      "char": "西",
+      "index": 354,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+89AA",
+      "char": "親",
+      "index": 355,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+89D2",
+      "char": "角",
+      "index": 356,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 52,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+8A18",
+      "char": "記",
+      "index": 357,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+8DB3",
+      "char": "足",
+      "index": 358,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9023",
+      "char": "連",
+      "index": 359,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+904A",
+      "char": "遊",
+      "index": 360,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9078",
+      "char": "選",
+      "index": 361,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+91DD",
+      "char": "針",
+      "index": 362,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9244",
+      "char": "鉄",
+      "index": 363,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9332",
+      "char": "録",
+      "index": 364,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 9,
+      "width": {
+        "left": -3,
+        "glyph": 56,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9593",
+      "char": "間",
+      "index": 365,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 9,
+      "width": {
+        "left": 0,
+        "glyph": 51,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9854",
+      "char": "顔",
+      "index": 366,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 9,
+      "width": {
+        "left": -2,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+98A8",
+      "char": "風",
+      "index": 367,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 9,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+98DB",
+      "char": "飛",
+      "index": 368,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 10,
+      "width": {
+        "left": -1,
+        "glyph": 53,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9AD8",
+      "char": "高",
+      "index": 369,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 10,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9B54",
+      "char": "魔",
+      "index": 370,
+      "sheet": 1,
+      "grid_x": 2,
+      "grid_y": 10,
+      "width": {
+        "left": -1,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9B5A",
+      "char": "魚",
+      "index": 371,
+      "sheet": 1,
+      "grid_x": 3,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 55,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+9CE5",
+      "char": "鳥",
+      "index": 372,
+      "sheet": 1,
+      "grid_x": 4,
+      "grid_y": 10,
+      "width": {
+        "left": -3,
+        "glyph": 54,
+        "char": 50
+      }
+    },
+    {
+      "codepoint": "U+E06B",
+      "char": "",
+      "index": 373,
+      "sheet": 1,
+      "grid_x": 5,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 55,
+        "char": 57
+      }
+    },
+    {
+      "codepoint": "U+E0A0",
+      "char": "",
+      "index": 374,
+      "sheet": 1,
+      "grid_x": 6,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 61,
+        "char": 62
+      }
+    },
+    {
+      "codepoint": "U+E0A1",
+      "char": "",
+      "index": 375,
+      "sheet": 1,
+      "grid_x": 7,
+      "grid_y": 10,
+      "width": {
+        "left": 0,
+        "glyph": 62,
+        "char": 62
+      }
+    },
+    {
+      "codepoint": "U+FF10",
+      "char": "０",
+      "index": 376,
+      "sheet": 1,
+      "grid_x": 8,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 41,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF11",
+      "char": "１",
+      "index": 377,
+      "sheet": 1,
+      "grid_x": 9,
+      "grid_y": 10,
+      "width": {
+        "left": 3,
+        "glyph": 33,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF12",
+      "char": "２",
+      "index": 378,
+      "sheet": 1,
+      "grid_x": 10,
+      "grid_y": 10,
+      "width": {
+        "left": 2,
+        "glyph": 44,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF13",
+      "char": "３",
+      "index": 379,
+      "sheet": 1,
+      "grid_x": 11,
+      "grid_y": 10,
+      "width": {
+        "left": 2,
+        "glyph": 41,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF14",
+      "char": "４",
+      "index": 380,
+      "sheet": 1,
+      "grid_x": 12,
+      "grid_y": 10,
+      "width": {
+        "left": 0,
+        "glyph": 46,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF15",
+      "char": "５",
+      "index": 381,
+      "sheet": 1,
+      "grid_x": 13,
+      "grid_y": 10,
+      "width": {
+        "left": 3,
+        "glyph": 39,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF16",
+      "char": "６",
+      "index": 382,
+      "sheet": 1,
+      "grid_x": 14,
+      "grid_y": 10,
+      "width": {
+        "left": 2,
+        "glyph": 41,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF17",
+      "char": "７",
+      "index": 383,
+      "sheet": 1,
+      "grid_x": 15,
+      "grid_y": 10,
+      "width": {
+        "left": 1,
+        "glyph": 41,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF18",
+      "char": "８",
+      "index": 384,
+      "sheet": 1,
+      "grid_x": 0,
+      "grid_y": 11,
+      "width": {
+        "left": 3,
+        "glyph": 40,
+        "char": 44
+      }
+    },
+    {
+      "codepoint": "U+FF19",
+      "char": "９",
+      "index": 385,
+      "sheet": 1,
+      "grid_x": 1,
+      "grid_y": 11,
+      "width": {
+        "left": 1,
+        "glyph": 43,
+        "char": 44
+      }
+    }
+  ],
+  "sheet_png": [
+    "sheet_0.flipY.png",
+    "sheet_1.flipY.png"
+  ],
+  "png_ops": {
+    "rotate180": false,
+    "flipY": true
+  }
+}

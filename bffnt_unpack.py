@@ -3,6 +3,7 @@
 import os
 import json
 import struct
+import shutil
 from typing import Dict, Any, List
 
 from bffnt_common import (
@@ -92,7 +93,7 @@ def decode_sheet_to_png_bc4_gx2(data: bytes, width: int, height: int, out_path: 
             wf.write(buf)
 
 
-def unpack_bffnt(path: str, rotate180: bool = False, flip_y: bool = False) -> str:
+def unpack_bffnt(path: str, rotate180: bool = False, flip_y: bool = False, verbose: bool = False) -> str:
     with open(path, 'rb') as f:
         buf = f.read()
 
@@ -117,9 +118,24 @@ def unpack_bffnt(path: str, rotate180: bool = False, flip_y: bool = False) -> st
     widths_by_index = parse_cwdh_chain(buf, cwdh_off, little)
     code_to_index = parse_cmap_chain(buf, cmap_off, little, platform)
 
+    # Logging similar to pack: brief by default, detailed with BFFNT_VERBOSE=1
+    verbose = bool(verbose) or bool(os.environ.get('BFFNT_VERBOSE'))
+    try:
+        print('[UNPACK] Формат:', platform, 'Endian:', 'LE' if little else 'BE')
+        print('[UNPACK] FINF @ 0x%X; TGLP @ 0x%X; CWDH @ 0x%X; CMAP @ 0x%X' % (finf_off, tglp_off, cwdh_off, cmap_off))
+        print('[UNPACK] Width entries:', len(widths_by_index), 'CMAP pairs:', len(code_to_index))
+    except Exception:
+        pass
+
     root = os.path.dirname(os.path.abspath(path))
     base = os.path.splitext(os.path.basename(path))[0]
     out_dir = os.path.join(root, base)
+    # Clean existing output directory to avoid stale files from previous runs
+    try:
+        if os.path.isdir(out_dir):
+            shutil.rmtree(out_dir)
+    except Exception:
+        pass
     os.makedirs(out_dir, exist_ok=True)
 
     meta: Dict[str, Any] = {
@@ -136,8 +152,10 @@ def unpack_bffnt(path: str, rotate180: bool = False, flip_y: bool = False) -> st
     col_count = int(tglp['cols'])
     per_sheet = row_count * col_count
 
+    # Build glyph list sorted by glyph index to match sheet/grid order,
+    # so neighbors in index (e.g., 146,147,148,149) appear together.
     glyphs: List[Dict[str, Any]] = []
-    for cc, idx in sorted(code_to_index.items(), key=lambda kv: kv[0]):
+    for cc, idx in sorted(code_to_index.items(), key=lambda kv: kv[1]):
         if int(cc) == 0xFFFF:
             # Пропускаємо службовий U+FFFF
             continue
@@ -146,6 +164,15 @@ def unpack_bffnt(path: str, rotate180: bool = False, flip_y: bool = False) -> st
         grid_x = rem % row_count
         grid_y = rem // row_count
         w = widths_by_index.get(idx)
+        if verbose:
+            try:
+                ch_disp = chr(cc) if 0 <= cc <= 0x10FFFF else ''
+            except Exception:
+                ch_disp = ''
+            if w:
+                print(f"[UNPACK] GLYPH: idx {idx} '{ch_disp}' U+{cc:04X} -> left={w.get('left')} glyph={w.get('glyph')} char={w.get('char')}")
+            else:
+                print(f"[UNPACK] GLYPH: idx {idx} '{ch_disp}' U+{cc:04X}")
         glyphs.append({
             'codepoint': f'U+{cc:04X}',
             'char': chr(cc) if 32 <= cc <= 0x10FFFF else '',

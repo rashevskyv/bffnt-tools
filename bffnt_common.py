@@ -191,17 +191,19 @@ def parse_cmap_chain(buf: bytes, start_off: int, little: bool, platform: str) ->
         p += 2
         next_ofs, p = read_u32(buf, p, little)
 
+        # Important: when chaining CMAP segments, earlier segments (closer to head)
+        # must take precedence. Do not overwrite existing entries from prior segments.
         if mapping_method == 0:
             char_offset, p = read_u16(buf, p, little)
             for cc in range(code_begin, code_end + 1):
                 idx = cc - code_begin + char_offset
-                if idx < 0xFFFF:
+                if idx < 0xFFFF and cc not in cmap:
                     cmap[cc] = idx
         elif mapping_method == 1:
             for cc in range(code_begin, code_end + 1):
                 idx = struct.unpack_from('<h' if little else '>h', buf, p)[0]
                 p += 2
-                if idx != -1:
+                if idx != -1 and cc not in cmap:
                     cmap[cc] = idx
         elif mapping_method == 2:
             count, p = read_u16(buf, p, little)
@@ -211,13 +213,13 @@ def parse_cmap_chain(buf: bytes, start_off: int, little: bool, platform: str) ->
                     cc, p = read_u32(buf, p, little)
                     idx = struct.unpack_from('<h' if little else '>h', buf, p)[0]; p += 2
                     p += 2
-                    if idx != -1:
+                    if idx != -1 and cc not in cmap:
                         cmap[cc] = idx
             else:
                 for _ in range(count):
                     cc, p = read_u16(buf, p, little)
                     idx = struct.unpack_from('<h' if little else '>h', buf, p)[0]; p += 2
-                    if idx != -1:
+                    if idx != -1 and cc not in cmap:
                         cmap[cc] = idx
         else:
             raise ValueError('Невідомий метод CMAP: %d' % mapping_method)

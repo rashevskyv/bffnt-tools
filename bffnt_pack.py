@@ -48,7 +48,7 @@ def _parse_cp(s):
         return None
 
 
-def pack_from_json_folder(folder: str, out_path: str = None) -> str:
+def pack_from_json_folder(folder: str, out_path: str = None, verbose: bool = False) -> str:
     font_json = os.path.join(folder, 'font.json')
     if not os.path.isfile(font_json):
         print('ПОМИЛКА: не знайдено font.json у теці', folder, file=sys.stderr)
@@ -75,6 +75,8 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
     # Allow forcing packer to ignore embedded base64 via JSON flag
     ignore_b64 = bool(meta.get('ignore_file_b64'))
     file_b64 = (None if ignore_b64 else meta.get('file_b64'))
+    # Verbosity control: CLI flag takes precedence, then JSON, then env var
+    verbose = bool(verbose) or bool(meta.get('verbose_logs')) or bool(os.environ.get('BFFNT_VERBOSE'))
     raw = None
     if file_b64:
         raw = base64.b64decode(file_b64)
@@ -227,15 +229,16 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
                 buf[p+2] = charw & 0xFF
                 p += 3
                 patched_count += 1
-                info = glyph_info_by_idx.get(idx, {})
-                cp = info.get('codepoint')
-                ch = info.get('char')
-                cp_txt = (f"U+{cp:04X}" if isinstance(cp, int) and cp >= 0 else "?")
-                try:
-                    ch_disp = ch if ch else (chr(cp) if isinstance(cp, int) and 0 <= cp <= 0x10FFFF else '')
-                except Exception:
-                    ch_disp = ch or ''
-                print(f"[PACK] CWDH: idx {idx} '{ch_disp}' {cp_txt} -> left={orig_left} glyph={glyphw} char={charw}")
+                if verbose:
+                    info = glyph_info_by_idx.get(idx, {})
+                    cp = info.get('codepoint')
+                    ch = info.get('char')
+                    cp_txt = (f"U+{cp:04X}" if isinstance(cp, int) and cp >= 0 else "?")
+                    try:
+                        ch_disp = ch if ch else (chr(cp) if isinstance(cp, int) and 0 <= cp <= 0x10FFFF else '')
+                    except Exception:
+                        ch_disp = ch or ''
+                    print(f"[PACK] CWDH: idx {idx} '{ch_disp}' {cp_txt} -> left={orig_left} glyph={glyphw} char={charw}")
             off = (next_ofs - 8) if next_ofs else 0
         print('[PACK] Оновлено метрик CWDH:', patched_count)
 
@@ -243,6 +246,14 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
         desired_map = {}
         for g in meta.get('glyphs', []):
             cp = _parse_cp(g.get('codepoint'))
+            if cp is None:
+                # Fallback: try infer from single-character 'char' field
+                ch = g.get('char')
+                if isinstance(ch, str) and len(ch) > 0:
+                    try:
+                        cp = ord(ch[0])
+                    except Exception:
+                        cp = None
             if cp in (0xFFFF,):
                 continue
             try:
@@ -356,21 +367,12 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
             override_pairs = []
             for cp, idx in desired_map.items():
                 if platform != 'NX' and (cp is None or cp < 0 or cp > 0xFFFF):
-                    print(f"[PACK] CMAP: SKIP out-of-range cp={cp} for non-NX")
                     continue
                 override_pairs.append((cp, idx))
-                try:
-                    ch_disp = chr(cp) if 0 <= cp <= 0x10FFFF else ''
-                except Exception:
-                    ch_disp = ''
-                print(f"[PACK] CMAP: map '{ch_disp}' U+{cp:04X} -> idx {idx}")
             if override_pairs:
                 print(f"[PACK] CMAP override (JSON pairs): {len(override_pairs)} (first 5: {override_pairs[:5]})")
                 # Insert new segment as head of the CMAP chain: set its next->old_first,
                 # then update FINF's cmap pointer to point to the new head.
-                old_first_off = cmap_off
-                old_first_target = old_first_off + 8
-
                 seg_start = len(buf)
                 seg = bytearray()
                 seg += b'CMAP'
@@ -382,7 +384,7 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
                     seg += struct.pack('<I' if little else '>I', 0)  # code_end
                     seg += struct.pack('<H' if little else '>H', 2)  # mapping_method=SCAN
                     seg += b'\x00\x00'
-                    seg += struct.pack('<I' if little else '>I', old_first_target)  # next_ofs -> old head
+                    seg += struct.pack('<I' if little else '>I', 0)  # next_ofs -> 0 (replace entire chain)
                     seg += struct.pack('<H' if little else '>H', count)
                     seg += b'\x00\x00'
                     for cp, idx in override_pairs:
@@ -397,7 +399,7 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
                     seg += struct.pack('<H' if little else '>H', 0)  # code_end
                     seg += struct.pack('<H' if little else '>H', 2)  # mapping_method=SCAN
                     seg += b'\x00\x00'
-                    seg += struct.pack('<I' if little else '>I', old_first_target)  # next_ofs -> old head
+                    seg += struct.pack('<I' if little else '>I', 0)  # next_ofs -> 0 (replace entire chain)
                     seg += struct.pack('<H' if little else '>H', count)
                     for cp, idx in override_pairs:
                         seg += struct.pack('<H' if little else '>H', int(cp) & 0xFFFF)
@@ -429,7 +431,7 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
                     print(f"[PACK] FINF: cmap pointer -> 0x{new_head_target:X} (new head)")
                 except Exception as e:
                     print('[PACK] ПОПЕРЕДЖЕННЯ: не вдалося оновити FINF.cmap → новий head:', e)
-                print(f"[PACK] Додано CMAP Scan override на {len(override_pairs)} пар(и) як head")
+                print(f"[PACK] Додано CMAP Scan override на {len(override_pairs)} пар(и) як head (ланцюжок CMAP замінено)")
         except Exception as ex:
             print('[PACK] Попередження: не вдалося додати CMAP Scan override:', ex)
 
@@ -557,8 +559,19 @@ def pack_from_json_folder(folder: str, out_path: str = None) -> str:
     if out_path is None:
         out_name = meta.get('source_file', 'repacked.bffnt')
         out_path = os.path.join(folder, out_name)
-    with open(out_path, 'wb') as wf:
-        wf.write(bytes(buf))
+    try:
+        with open(out_path, 'wb') as wf:
+            wf.write(bytes(buf))
+    except PermissionError:
+        # Try to remove existing file (may be read-only or locked)
+        try:
+            if os.path.isfile(out_path):
+                os.remove(out_path)
+            with open(out_path, 'wb') as wf:
+                wf.write(bytes(buf))
+        except Exception as e:
+            print(f"ПОМИЛКА: не вдалося записати {out_path}. Закрийте файли у сторонніх програмах (наприклад, Switch Toolbox/переглядач) і спробуйте ще раз. Деталі: {e}", file=sys.stderr)
+            raise
     h_raw = hashlib.sha256(raw).hexdigest()
     with open(out_path, 'rb') as rf:
         h_out = hashlib.sha256(rf.read()).hexdigest()
