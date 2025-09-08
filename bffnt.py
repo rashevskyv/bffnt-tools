@@ -763,6 +763,7 @@ if __name__ == '__main__':
         if not os.path.isfile(font_json):
             print('ПОМИЛКА: не знайдено font.json у теці', folder, file=sys.stderr)
             sys.exit(2)
+        print('[PACK] Використовую font.json:', font_json)
         meta = json.load(open(font_json, 'r', encoding='utf-8'))
         file_b64 = meta.get('file_b64')
         if not file_b64:
@@ -780,6 +781,8 @@ if __name__ == '__main__':
             finf_off = find_section(raw, SIG_FINF)
             _finf, offs = parse_finf(raw, finf_off, little, platform, version)
             cwdh_off = (offs['cwdh'] - 8) if offs['cwdh'] else find_section(raw, b'CWDH')
+            print('[PACK] Формат:', platform, 'Endian:', 'LE' if little else 'BE')
+            print('[PACK] CWDH offset: 0x%X' % cwdh_off)
 
             # мапа індекс -> (left, glyph, char)
             json_widths = {}
@@ -822,6 +825,7 @@ if __name__ == '__main__':
                         patched_count += 1
                     p += 3
                 off = (next_ofs - 8) if next_ofs else 0
+            print('[PACK] Оновлено метрик CWDH:', patched_count)
         except Exception as ex:
             print('ПОПЕРЕДЖЕННЯ: не вдалося оновити CWDH із JSON:', ex)
 
@@ -835,6 +839,7 @@ if __name__ == '__main__':
             tglp_off = (offs['tglp'] - 8) if offs['tglp'] else find_section(raw, SIG_TGLP)
             tglp, sheets = parse_tglp_and_extract(raw, tglp_off, little, determine_platform(sig, little, version), sig)
             names = meta.get('sheet_png', [])
+            png_ops = meta.get('png_ops') or {'rotate180': False, 'flipY': False}
             # Зчитаємо необхідні поля з TGLP ще раз для sheet_data_off
             p = tglp_off + 4
             _section_size, p = read_u32(raw, p, little)
@@ -850,25 +855,44 @@ if __name__ == '__main__':
             sheet_w, p = read_u16(raw, p, little)
             sheet_h, p = read_u16(raw, p, little)
             sheet_data_off, p = read_u32(raw, p, little)
+            print('[PACK] TGLP sheets:', int(sheet_count), 'sheet_size:', int(sheet_size), 'bytes; size:', int(sheet_w), 'x', int(sheet_h))
 
-            for i in range(int(sheet_count)):
-                expected_name = None
+            def _find_sheet_path(i: int):
+                # 1) ім'я з font.json
                 for nm in names:
                     if nm.startswith(f'sheet_{i}') and nm.endswith('.png'):
-                        expected_name = nm
-                        break
-                if expected_name is None:
-                    continue
-                pth = os.path.join(folder, expected_name)
-                if not os.path.isfile(pth):
+                        pth = os.path.join(folder, nm)
+                        if os.path.isfile(pth):
+                            return nm, pth
+                # 2) типові варіанти
+                candidates = [
+                    f'sheet_{i}.png',
+                    f'sheet_{i}.flipY.png',
+                    f'sheet_{i}.rot180.png',
+                    f'sheet_{i}.rot180.flipY.png',
+                    f'sheet_{i}.flipY.rot180.png',
+                ]
+                for nm in candidates:
+                    pth = os.path.join(folder, nm)
+                    if os.path.isfile(pth):
+                        return nm, pth
+                return None, None
+
+            for i in range(int(sheet_count)):
+                nm, pth = _find_sheet_path(i)
+                if not pth:
+                    print(f'[PACK] sheet {i}: PNG не знайдено — залишаю оригінал')
                     continue
                 if not _HAS_PIL:
                     raise RuntimeError('Pillow потрібен для перекодування PNG у BC4')
+                print(f'[PACK] sheet {i}: PNG = {pth}')
                 img_open = Image.open(pth)
                 # Відкотити суфіксовані трансформації (як у верифікації)
-                if '.rot180' in expected_name:
+                rot_flag = ('.rot180' in (nm or '')) or bool(png_ops.get('rotate180'))
+                flip_flag = ('.flipY' in (nm or '')) or bool(png_ops.get('flipY'))
+                if rot_flag:
                     img_open = img_open.rotate(180)
-                if '.flipY' in expected_name:
+                if flip_flag:
                     img_open = img_open.transpose(Image.FLIP_TOP_BOTTOM)
                 # Порівняння з оригіналом; якщо збігається — залишаємо raw як є
                 try:
@@ -877,11 +901,14 @@ if __name__ == '__main__':
                     origL = None
                 comp = (img_open.getchannel('A') if img_open.mode == 'RGBA' else img_open.convert('L'))
                 equal = (origL is not None and comp.size == origL.size and list(comp.getdata()) == list(origL.getdata()))
-                if not equal:
+                if equal:
+                    print(f'[PACK] sheet {i}: без змін (пікселі збігаються з оригіналом)')
+                else:
+                    pos = int(sheet_data_off) + i * int(sheet_size)
+                    print(f'[PACK] sheet {i}: змінено → кодуємо BC4, запис: offset=0x%X size=%d' % (pos, int(sheet_size)))
                     swz = _encode_png_to_bc4_gx2(img_open, int(sheet_w), int(sheet_h), i)
                     if len(swz) != int(sheet_size):
                         raise ValueError('Невірний розмір закодованого аркуша')
-                    pos = int(sheet_data_off) + i * int(sheet_size)
                     buf[pos:pos+int(sheet_size)] = swz
                     any_sheet_changed = True
         except Exception as ex:
@@ -894,11 +921,11 @@ if __name__ == '__main__':
         h_raw = hashlib.sha256(raw).hexdigest()
         with open(out_path, 'rb') as rf:
             h_out = hashlib.sha256(rf.read()).hexdigest()
-        print('SHA256 original(base64):', h_raw)
-        print('SHA256 written:', h_out)
+        print('[PACK] SHA256 original(base64):', h_raw)
+        print('[PACK] SHA256 written:', h_out)
         if h_out == h_raw:
-            print('УВАГА: Вихідний файл біт-ідентичний оригіналу (ймовірно, метрики/аркуші не змінені).')
+            print('[PACK] УВАГА: Вихідний файл біт-ідентичний оригіналу (ймовірно, метрики/аркуші не змінені або не знайдено змінені PNG).')
         else:
-            print(f'OK: Запаковано {out_path} (оновлено метрик: {patched_count}; перекодовано PNG: {"так" if any_sheet_changed else "ні"})')
+            print(f'[PACK] OK: Запаковано {out_path} (оновлено метрик: {patched_count}; перекодовано PNG: {"так" if any_sheet_changed else "ні"})')
     else:
         main()
