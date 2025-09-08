@@ -674,7 +674,7 @@ def main():
 if __name__ == '__main__':
     # Режими:
     #  - без аргументів / із шляхом до .bffnt — розпакування
-    #  - pack <тека_з_font.json> [вихід.bffnt] — пакування (за замовчуванням байт-в-байт із file_b64)
+    #  - pack <тека_з_font.json> [вихід.bffnt] — пакування (оновлює метрики CWDH; PNG не перекодовуються)
     if len(sys.argv) >= 2 and sys.argv[1].lower() == 'pack':
         import hashlib
         folder = sys.argv[2] if len(sys.argv) >= 3 else os.path.join(os.path.dirname(__file__), 'CKingMain')
@@ -685,11 +685,67 @@ if __name__ == '__main__':
         meta = json.load(open(font_json, 'r', encoding='utf-8'))
         file_b64 = meta.get('file_b64')
         if not file_b64:
-            print('ПОМИЛКА: в font.json немає file_b64 для байт-в-байт пакування', file=sys.stderr)
+            print('ПОМИЛКА: в font.json немає file_b64 для пакування', file=sys.stderr)
             sys.exit(3)
         raw = base64.b64decode(file_b64)
 
-        # Верифікація PNG проти оригіналу (без рекомпресії): якщо PNG не змінені, пікселі співпадуть
+        # Спроба оновити CWDH метрики з JSON
+        buf = bytearray(raw)
+        patched_count = 0
+        try:
+            sig = raw[0:4]
+            little, version, header_size = detect_endian_and_version(raw, sig)
+            platform = determine_platform(sig, little, version)
+            finf_off = find_section(raw, SIG_FINF)
+            _finf, offs = parse_finf(raw, finf_off, little, platform, version)
+            cwdh_off = (offs['cwdh'] - 8) if offs['cwdh'] else find_section(raw, b'CWDH')
+
+            # мапа індекс -> (left, glyph, char)
+            json_widths = {}
+            for g in meta.get('glyphs', []):
+                try:
+                    idx = int(g.get('index'))
+                except Exception:
+                    continue
+                w = g.get('width') or {}
+                left = int(w.get('left', 0))
+                glyphw = int(w.get('glyph', 0))
+                charw = int(w.get('char', 0))
+                if left < -128: left = -128
+                if left > 127: left = 127
+                if glyphw < 0: glyphw = 0
+                if glyphw > 255: glyphw = 255
+                if charw < 0: charw = 0
+                if charw > 255: charw = 255
+                json_widths[idx] = (left, glyphw, charw)
+
+            off = cwdh_off
+            visited = set()
+            while off and off not in visited:
+                visited.add(off)
+                if raw[off:off+4] != b'CWDH':
+                    raise ValueError('Очікував CWDH на офсеті 0x%X' % off)
+                p = off + 4
+                _sz, p = read_u32(raw, p, little)
+                start_idx, p = read_u16(raw, p, little)
+                end_idx, p = read_u16(raw, p, little)
+                next_ofs, p = read_u32(raw, p, little)
+                count = end_idx - start_idx + 1
+                for i in range(count):
+                    idx = start_idx + i
+                    if idx in json_widths:
+                        left, glyphw, charw = json_widths[idx]
+                        buf[p + 0] = (left + 256) % 256
+                        buf[p + 1] = glyphw & 0xFF
+                        buf[p + 2] = charw & 0xFF
+                        patched_count += 1
+                    p += 3
+                off = (next_ofs - 8) if next_ofs else 0
+        except Exception as ex:
+            print('ПОПЕРЕДЖЕННЯ: не вдалося оновити CWDH із JSON:', ex)
+
+        # Перевіримо PNG: якщо вони змінені, попередимо і зупинимося (рекомпресія недоступна)
+        any_sheet_changed = False
         try:
             sig = raw[0:4]
             little, version, header_size = detect_endian_and_version(raw, sig)
@@ -699,7 +755,6 @@ if __name__ == '__main__':
             tglp, sheets = parse_tglp_and_extract(raw, tglp_off, little, determine_platform(sig, little, version), sig)
             names = meta.get('sheet_png', [])
             for i, s in enumerate(sheets):
-                # Очікуване ім'я
                 expected_name = None
                 for nm in names:
                     if nm.startswith(f'sheet_{i}') and nm.endswith('.png'):
@@ -709,43 +764,35 @@ if __name__ == '__main__':
                     pth = os.path.join(folder, expected_name)
                     if os.path.isfile(pth) and _HAS_PIL:
                         img_png = Image.open(pth)
-                        # Відкотити суфіксовані трансформації для порівняння
                         if '.rot180' in expected_name:
                             img_png = img_png.rotate(180)
                         if '.flipY' in expected_name:
                             img_png = img_png.transpose(Image.FLIP_TOP_BOTTOM)
-                        # Канал для порівняння: альфа якщо RGBA, інакше L
-                        if img_png.mode == 'RGBA':
-                            comp = img_png.getchannel('A')
-                        else:
-                            comp = img_png.convert('L')
-                        # Оригінал як L
+                        comp = img_png.getchannel('A') if img_png.mode == 'RGBA' else img_png.convert('L')
                         origL = _decode_sheet_pixels_bc4_gx2(s, int(tglp['sheet_width']), int(tglp['sheet_height']), i)
-                        # Порівняння
-                        if comp.size != origL.size:
-                            print(f'УВАГА: розміри PNG і оригіналу не збігаються для аркуша {i}')
-                        else:
-                            if list(comp.getdata()) == list(origL.getdata()):
-                                print(f'VERIFY sheet {i}: OK (пікселі співпали)')
-                            else:
-                                print(f'УВАГА: sheet {i} змінено (пікселі відрізняються) — біт-ідентичність не гарантується без рекомпресії')
+                        if comp.size == origL.size and list(comp.getdata()) != list(origL.getdata()):
+                            print(f'УВАГА: sheet {i} змінено (пікселі відрізняються) — рекомпресія BC4 не підтримується цим інструментом')
+                            any_sheet_changed = True
         except Exception as ex:
             print('ПОПЕРЕДЖЕННЯ: перевірка PNG не виконана:', ex)
+
+        if any_sheet_changed:
+            print('ПОМИЛКА: Змінені PNG неможливо запакувати без BC4-енкодера. Поки що підтримується лише оновлення метрик (CWDH).', file=sys.stderr)
+            sys.exit(4)
 
         out_name = sys.argv[3] if len(sys.argv) >= 4 else meta.get('source_file', 'repacked.bffnt')
         out_path = out_name if os.path.isabs(out_name) else os.path.join(folder, out_name)
         with open(out_path, 'wb') as wf:
-            wf.write(raw)
-        # Підтвердження біт-ідентичності
+            wf.write(bytes(buf))
         h_raw = hashlib.sha256(raw).hexdigest()
         with open(out_path, 'rb') as rf:
             h_out = hashlib.sha256(rf.read()).hexdigest()
-        print('OK: спаковано байт-в-байт до', out_path)
         print('SHA256 original(base64):', h_raw)
         print('SHA256 written:', h_out)
         if h_out == h_raw:
-            print('VERIFY FILE: OK (байт-в-байт однаково)')
+            print('УВАГА: Вихідний файл біт-ідентичний оригіналу (ймовірно, метрики не змінені).')
         else:
-            print('VERIFY FILE: FAIL (очікувалась ідентичність)')
+            print(f'OK: Запаковано {out_path} (оновлено метрик: {patched_count})')
+            print('ПРИМІТКА: оновлення CMAP/PNG наразі не підтримано.')
     else:
         main()
