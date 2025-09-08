@@ -73,17 +73,22 @@ def _edit_png_cell_block(png_path: str, meta: dict, glyph: dict):
     bx = align_block(x0, x0 + cw, 4)
     by = align_block(y0, y0 + ch, 4)
     pix = img.load()
+    expected = None
     for dy in range(4):
         for dx in range(4):
             x = bx + dx
             y = by + dy
             if rgba:
                 r, g, b, a = pix[x, y]
-                pix[x, y] = (255, 255, 255, 255)
+                # Toggle alpha to ensure comp-channel change: if 255 → 0, else → 255
+                new_a = 0 if a == 255 else 255
+                pix[x, y] = (255, 255, 255, new_a)
+                expected = new_a
             else:
                 pix[x, y] = 255
+                expected = 255
     img.save(png_path)
-    return (bx, by)
+    return (bx, by, expected)
 
 
 import unittest
@@ -118,7 +123,7 @@ class PackApplyEditsTests(unittest.TestCase):
 
         # Modify PNG: draw a 4x4 white block inside the cell
             png0 = _find_png(work_src, 0)
-            bx, by = _edit_png_cell_block(png0, meta, glyph)
+            bx, by, expected = _edit_png_cell_block(png0, meta, glyph)
 
         # Pack
             out_bffnt = os.path.join(td, 'packed.bffnt')
@@ -166,7 +171,7 @@ class PackApplyEditsTests(unittest.TestCase):
                 xo, yo = w - 1 - bx, h - 1 - by
             else:
                 xo, yo = w - 1 - bx, by
-            self.assertEqual(int(px[xo, yo]), 255, f'edited PNG block not reflected after pack/unpack at origin ({xo},{yo})')
+            self.assertEqual(int(px[xo, yo]), int(expected), f'edited PNG block not reflected after pack/unpack at origin ({xo},{yo}); expected {expected}')
 
 
 if __name__ == '__main__':
