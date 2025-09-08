@@ -1,0 +1,7 @@
+# GUI toolkit (choose one; PySide6 is default here)
+PySide6>=6.5
+# Alternatively, you may use PyQt5 instead of PySide6:
+# PyQt5>=5.15
+
+# Image processing (used by bffnt.py and optional verifications)
+Pillow>=10.0

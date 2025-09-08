@@ -1,0 +1,6 @@
+# Ignore sample data and extracted outputs under tools/bffnt_py
+*.bffnt
+*/sheet_*.png
+*/font.json
+out_dir/
+CKingMain/
