@@ -425,7 +425,32 @@ class BffntQtViewer(QtWidgets.QMainWindow):
             self.meta = json.load(f)
         self.tglp = self.meta.get('tglp', {})
         self.glyphs = self.meta.get('glyphs', [])
-        self.sheet_png = [p for p in self.meta.get('sheet_png', []) if p.endswith('.png')]
+        # Try to use names from JSON; if they don't exist on disk, rebuild from present files.
+        json_sheet_png = [p for p in self.meta.get('sheet_png', []) if p.endswith('.png')]
+        folder_files = set(os.listdir(self.folder))
+        def _exists(name: str) -> bool:
+            return name in folder_files and os.path.isfile(os.path.join(self.folder, name))
+        need_rebuild = (not json_sheet_png) or any(not _exists(p) for p in json_sheet_png)
+        if need_rebuild:
+            # Scan folder for sheet_i*.png variants and reconstruct the list by index
+            found = {}
+            for fn in folder_files:
+                if not fn.lower().endswith('.png'):
+                    continue
+                if not fn.startswith('sheet_'):
+                    continue
+                try:
+                    base = fn.split('.')[0]
+                    idx = int(base.split('_')[1])
+                except Exception:
+                    continue
+                # Prefer shorter (unsuffixed) names if multiple match same index; otherwise keep first found
+                old = found.get(idx)
+                if old is None or len(fn) < len(old):
+                    found[idx] = fn
+            self.sheet_png = [found[i] for i in sorted(found.keys())]
+        else:
+            self.sheet_png = json_sheet_png
         self.cw = int(self.tglp.get('cell_width', 0))
         self.ch = int(self.tglp.get('cell_height', 0))
         self.rows = int(self.tglp.get('rows', 0))

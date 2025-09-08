@@ -8,3 +8,4 @@ CKingMainL/
 CKingMsg/
 appveyor.yml
 AGENTS.md
+__pycache__/
