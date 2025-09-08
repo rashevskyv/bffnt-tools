@@ -197,7 +197,7 @@ class BffntQtViewer(QtWidgets.QMainWindow):
         self.view.setScene(self.scene)
         self.view.clicked.connect(self.on_view_clicked)
         self.view.scaleChanged.connect(self.on_view_scale_changed)
-        self.view.setToolTip('ЛКМ — вибір комірки. Середня кнопка — панорамування. Колесо — масштаб. Ctrl+Стрілки — навігація по комірках.')
+        self.view.setToolTip('ЛКМ — вибір комірки. Середня кнопка — панорамування. Колесо — масштаб. Ctrl+Стрілки — навігація по комірках. Ctrl+Shift+A — автоширина.')
         center_box.addWidget(self.view, 1)
         # capture mouse events on the viewport for drag handles
         self.view.viewport().installEventFilter(self)
@@ -223,6 +223,13 @@ class BffntQtViewer(QtWidgets.QMainWindow):
             sc = ShortcutClass(seq, self)
             sc.setContext(QtCore.Qt.ApplicationShortcut)
             sc.activated.connect(fn)
+        # Auto-width hotkey: Ctrl+Shift+A
+        try:
+            sc_auto = ShortcutClass(QtGui.QKeySequence(QtCore.Qt.CTRL | QtCore.Qt.SHIFT | QtCore.Qt.Key_A), self)
+            sc_auto.setContext(QtCore.Qt.ApplicationShortcut)
+            sc_auto.activated.connect(self._auto_width_hotkey)
+        except Exception:
+            pass
         center_wrap = QtWidgets.QWidget()
         center_wrap.setLayout(center_box)
         hbox.addWidget(center_wrap, 1)
@@ -294,7 +301,7 @@ class BffntQtViewer(QtWidgets.QMainWindow):
 
         # Кнопка збереження не потрібна — зміни зберігаються автоматично при переході між комірками
         self.btn_auto = QtWidgets.QPushButton('Авто ширина із зображення')
-        self.btn_auto.setToolTip('Автовизначення Left/Glyph/Char за пікселями гліфа у комірці.')
+        self.btn_auto.setToolTip('Автовизначення Left/Glyph/Char за пікселями гліфа у комірці. Швидка клавіша: Ctrl+Shift+A')
         self.btn_auto.clicked.connect(self.auto_set_widths_from_image)
         right_box.addWidget(self.btn_auto)
         auto_pad_row = QtWidgets.QHBoxLayout()
@@ -866,6 +873,11 @@ class BffntQtViewer(QtWidgets.QMainWindow):
             self.view.ensureVisible(rect, margin, margin)
         except Exception:
             pass
+
+    def _auto_width_hotkey(self):
+        # Trigger auto width detection and keep focus for quick letter typing
+        self.auto_set_widths_from_image()
+        self._focus_char_edit_select_all()
 
     def _focus_char_edit_select_all(self):
         try:
