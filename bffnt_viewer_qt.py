@@ -715,16 +715,19 @@ class BffntQtViewer(QtWidgets.QMainWindow):
                     self.populate_info_panel(gx, gy)
                     self.update_overlays()
                     self._ensure_selected_visible()
+                    self._focus_char_edit_select_all()
                     return True
         if key == QtCore.Qt.Key_PageUp:
             row = self.list_png.currentRow()
             if row > 0:
                 self.list_png.setCurrentRow(row - 1)
+                self._focus_char_edit_select_all()
                 return True
         if key == QtCore.Qt.Key_PageDown:
             row = self.list_png.currentRow()
             if row < self.list_png.count() - 1:
                 self.list_png.setCurrentRow(row + 1)
+                self._focus_char_edit_select_all()
                 return True
         return False
 
@@ -767,6 +770,7 @@ class BffntQtViewer(QtWidgets.QMainWindow):
         self.populate_info_panel(gx, gy)
         self.update_overlays()
         self._ensure_selected_visible()
+        self._focus_char_edit_select_all()
 
     _drag_active = False
     _drag_kind = None  # 'left' | 'glyph' | 'char'
@@ -860,6 +864,14 @@ class BffntQtViewer(QtWidgets.QMainWindow):
             y0 = gy * self.real_h + 1
             rect = QtCore.QRectF(x0, y0, self.cw, self.ch)
             self.view.ensureVisible(rect, margin, margin)
+        except Exception:
+            pass
+
+    def _focus_char_edit_select_all(self):
+        try:
+            if hasattr(self, 'char_edit') and self.char_edit is not None:
+                self.char_edit.setFocus(QtCore.Qt.ShortcutFocusReason)
+                self.char_edit.selectAll()
         except Exception:
             pass
 
