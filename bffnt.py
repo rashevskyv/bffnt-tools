@@ -854,8 +854,8 @@ if __name__ == '__main__':
                     idx = None
                 if cp is None or idx is None:
                     continue
-                if cp not in desired_map:
-                    desired_map[cp] = idx
+                # Last one wins for duplicate codepoints
+                desired_map[cp] = idx
 
             def _pack_i16(val: int) -> bytes:
                 return struct.pack('<h' if little else '>h', int(val))
