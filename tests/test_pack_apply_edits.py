@@ -143,14 +143,30 @@ class PackApplyEditsTests(unittest.TestCase):
             self.assertEqual(got.get('width'), glyph['width'], 'widths not updated in repacked file')
 
         # Verify PNG pixel edited survived re-pack
-            out_png0 = _find_png(unpack_dir, 0)
-            self.assertTrue(os.path.isfile(out_png0))
-            if Image is not None:
-                im2 = Image.open(out_png0)
-                comp = im2.getchannel('A') if im2.mode == 'RGBA' else im2.convert('L')
-                px = comp.load()
-                # The same (bx,by) coordinates should be white (255) in flipY image as well
-                self.assertEqual(int(px[bx, by]), 255, 'edited PNG block not reflected after pack/unpack')
+            # Validate by decoding the packed file's sheet directly to origin orientation
+            with open(out_bffnt, 'rb') as rf:
+                buf = rf.read()
+            import bffnt as bmod2
+            sig = buf[0:4]
+            little, version, header_size = bmod2.detect_endian_and_version(buf, sig)
+            tglp_off = bmod2.find_section(buf, bmod2.SIG_TGLP)
+            tglp2, sheets = bmod2.parse_tglp_and_extract(buf, tglp_off, little, bmod2.determine_platform(sig, little, version), sig)
+            w = int(tglp2['sheet_width']); h = int(tglp2['sheet_height'])
+            img_dec = bmod2._decode_sheet_pixels_bc4_gx2(sheets[0], w, h, 0)
+            px = img_dec.load()
+            ops = meta.get('png_ops') or {}
+            rot = bool(ops.get('rotate180'))
+            flip = bool(ops.get('flipY'))
+            # Map edited coordinate from PNG space back to origin (reverse of viewer transforms)
+            if not rot and not flip:
+                xo, yo = bx, by
+            elif flip and not rot:
+                xo, yo = bx, h - 1 - by
+            elif rot and not flip:
+                xo, yo = w - 1 - bx, h - 1 - by
+            else:
+                xo, yo = w - 1 - bx, by
+            self.assertEqual(int(px[xo, yo]), 255, f'edited PNG block not reflected after pack/unpack at origin ({xo},{yo})')
 
 
 if __name__ == '__main__':
