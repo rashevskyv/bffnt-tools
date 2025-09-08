@@ -396,7 +396,7 @@ def decode_sheet_to_png_bc4_gx2(data: bytes, width: int, height: int, out_path: 
 
 # ---------------- BC4 encode (naive) + GX2 swizzle ----------------
 
-def _encode_bc4_block(pvals: list[int]) -> bytes:
+def _encode_bc4_block(pvals: List[int]) -> bytes:
     """Кодує один 4x4 блок (16 значень 0..255) у BC4_UNORM (8 байт).
     Наївний енкодер: бере min/max як кінцеві точки і квантує до найближчої палітри.
     """
@@ -674,9 +674,9 @@ def unpack_bffnt(path: str, rotate180: bool = False, flip_y: bool = False) -> st
     return out_dir
 
 
-def _collect_bffnts(base: str, recursive: bool) -> list[str]:
+def _collect_bffnts(base: str, recursive: bool) -> List[str]:
     exts = ('.bffnt', '.bcfnt', '.brfnt')
-    files: list[str] = []
+    files: List[str] = []
     if os.path.isfile(base) and base.lower().endswith(exts):
         return [base]
     if not os.path.isdir(base):
@@ -702,7 +702,7 @@ def main():
     args = sys.argv[1:]
     # Розбір прапорців (в довільному порядку)
     flags = {'--rotate180', '--flipY', '--all', '--r'}
-    paths: list[str] = []
+    paths: List[str] = []
     i = 0
     while i < len(args):
         a = args[i]
@@ -722,7 +722,7 @@ def main():
         i += 1
 
     # Визначимо які файли обробляти
-    targets: list[str] = []
+    targets: List[str] = []
     if paths:
         for p in paths:
             targets.extend(_collect_bffnts(p, recursive))
@@ -870,18 +870,19 @@ if __name__ == '__main__':
                     img_open = img_open.rotate(180)
                 if '.flipY' in expected_name:
                     img_open = img_open.transpose(Image.FLIP_TOP_BOTTOM)
-                swz = _encode_png_to_bc4_gx2(img_open, int(sheet_w), int(sheet_h), i)
-                if len(swz) != int(sheet_size):
-                    raise ValueError('Невірний розмір закодованого аркуша')
-                pos = int(sheet_data_off) + i * int(sheet_size)
-                buf[pos:pos+int(sheet_size)] = swz
-                # Маркер змін — якщо пікселі відрізнялись від оригіналу
+                # Порівняння з оригіналом; якщо збігається — залишаємо raw як є
                 try:
                     origL = _decode_sheet_pixels_bc4_gx2(sheets[i], int(sheet_w), int(sheet_h), i)
-                    comp = (img_open.getchannel('A') if img_open.mode == 'RGBA' else img_open.convert('L'))
-                    if comp.size == origL.size and list(comp.getdata()) != list(origL.getdata()):
-                        any_sheet_changed = True
                 except Exception:
+                    origL = None
+                comp = (img_open.getchannel('A') if img_open.mode == 'RGBA' else img_open.convert('L'))
+                equal = (origL is not None and comp.size == origL.size and list(comp.getdata()) == list(origL.getdata()))
+                if not equal:
+                    swz = _encode_png_to_bc4_gx2(img_open, int(sheet_w), int(sheet_h), i)
+                    if len(swz) != int(sheet_size):
+                        raise ValueError('Невірний розмір закодованого аркуша')
+                    pos = int(sheet_data_off) + i * int(sheet_size)
+                    buf[pos:pos+int(sheet_size)] = swz
                     any_sheet_changed = True
         except Exception as ex:
             print('ПОПЕРЕДЖЕННЯ: перекодування PNG не виконано:', ex)
