@@ -774,6 +774,7 @@ if __name__ == '__main__':
         # Спроба оновити CWDH метрики з JSON
         buf = bytearray(raw)
         patched_count = 0
+        cmap_updated_pairs = 0
         try:
             sig = raw[0:4]
             little, version, header_size = detect_endian_and_version(raw, sig)
@@ -781,6 +782,7 @@ if __name__ == '__main__':
             finf_off = find_section(raw, SIG_FINF)
             _finf, offs = parse_finf(raw, finf_off, little, platform, version)
             cwdh_off = (offs['cwdh'] - 8) if offs['cwdh'] else find_section(raw, b'CWDH')
+            cmap_off = (offs['cmap'] - 8) if offs['cmap'] else find_section(raw, b'CMAP')
             print('[PACK] Формат:', platform, 'Endian:', 'LE' if little else 'BE')
             print('[PACK] CWDH offset: 0x%X' % cwdh_off)
 
@@ -826,6 +828,129 @@ if __name__ == '__main__':
                     p += 3
                 off = (next_ofs - 8) if next_ofs else 0
             print('[PACK] Оновлено метрик CWDH:', patched_count)
+
+            # --- Оновлення CMAP згідно glyphs (codepoint -> index) ---
+            def _parse_cp(s):
+                if s is None:
+                    return None
+                if isinstance(s, int):
+                    return int(s)
+                ss = str(s).strip().upper()
+                try:
+                    if ss.startswith('U+'):
+                        return int(ss[2:], 16)
+                    if ss.startswith('0X'):
+                        return int(ss, 16)
+                    return int(ss, 10)
+                except Exception:
+                    return None
+
+            desired_map = {}
+            for g in meta.get('glyphs', []):
+                cp = _parse_cp(g.get('codepoint'))
+                try:
+                    idx = int(g.get('index'))
+                except Exception:
+                    idx = None
+                if cp is None or idx is None:
+                    continue
+                if cp not in desired_map:
+                    desired_map[cp] = idx
+
+            def _pack_i16(val: int) -> bytes:
+                return struct.pack('<h' if little else '>h', int(val))
+
+            def _pack_u16(val: int) -> bytes:
+                return struct.pack('<H' if little else '>H', int(val))
+
+            off = cmap_off
+            visited = set()
+            seg_no = 0
+            while off and off not in visited:
+                visited.add(off)
+                if raw[off:off+4] != b'CMAP':
+                    raise ValueError('Очікував CMAP на офсеті 0x%X' % off)
+                p = off + 4
+                section_size, p = read_u32(raw, p, little)
+                if platform == 'NX':
+                    code_begin, p = read_u32(raw, p, little)
+                    code_end, p = read_u32(raw, p, little)
+                else:
+                    code_begin, p = read_u16(raw, p, little)
+                    code_end, p = read_u16(raw, p, little)
+                mapping_method, p = read_u16(raw, p, little)
+                p += 2  # padding
+                next_ofs, p = read_u32(raw, p, little)
+
+                seg_no += 1
+                updated_here = 0
+                try:
+                    if mapping_method == 1:  # Table
+                        # Для кожного cc у діапазоні перезаписати i16 idx
+                        cc = code_begin
+                        while cc <= code_end:
+                            idx = desired_map.get(cc, -1)
+                            # i16, -1 означає відсутній
+                            buf[p:p+2] = _pack_i16(idx if -32768 <= idx <= 32767 else -1)
+                            p += 2
+                            if idx != -1:
+                                cmap_updated_pairs += 1; updated_here += 1
+                            cc += 1
+                    elif mapping_method == 2:  # Scan
+                        count, p2 = read_u16(raw, p, little)
+                        if platform == 'NX':
+                            p2 += 2  # padding
+                            for _ in range(count):
+                                cp, p2 = read_u32(raw, p2, little)
+                                # idx i16, then padding 2
+                                idx_off = p2
+                                idx_old, p2 = read_u16(raw, p2, little)
+                                p2 += 2  # padding
+                                new_idx = desired_map.get(cp, idx_old)
+                                buf[idx_off:idx_off+2] = _pack_i16(new_idx if -32768 <= new_idx <= 32767 else -1)
+                                if new_idx != idx_old:
+                                    cmap_updated_pairs += 1; updated_here += 1
+                        else:
+                            p2 = p
+                            for _ in range(count):
+                                cp, p2 = read_u16(raw, p2, little)
+                                idx_off = p2
+                                idx_old, p2 = read_u16(raw, p2, little)
+                                new_idx = desired_map.get(cp, idx_old)
+                                buf[idx_off:idx_off+2] = _pack_i16(new_idx if -32768 <= new_idx <= 32767 else -1)
+                                if new_idx != idx_old:
+                                    cmap_updated_pairs += 1; updated_here += 1
+                    elif mapping_method == 0:  # Direct
+                        # Можемо оновити тільки коли все ще лінійна функція idx = (cc - begin) + offset
+                        # Зчитаємо поточний char_offset, перевіримо бажану лінійність.
+                        char_offset, _tmp = read_u16(raw, p, little)
+                        # Визначимо, чи вся послідовність у desired_map і лінійна
+                        ok = True
+                        new_off = None
+                        for i, cc in enumerate(range(code_begin, code_end + 1)):
+                            idx = desired_map.get(cc, None)
+                            if idx is None:
+                                ok = False; break
+                            expect_off = idx - (cc - code_begin)
+                            if new_off is None:
+                                new_off = expect_off
+                            elif expect_off != new_off:
+                                ok = False; break
+                        if ok and new_off is not None and 0 <= new_off <= 0xFFFF:
+                            buf[p:p+2] = _pack_u16(new_off)
+                            # лічильник змін — приблизно як кількість елементів
+                            updated_here += (code_end - code_begin + 1)
+                            cmap_updated_pairs += (code_end - code_begin + 1)
+                        else:
+                            print(f'[PACK] CMAP seg#{seg_no} Direct: неможливо відобразити довільні зміни — пропускаю')
+                    else:
+                        print(f'[PACK] CMAP seg#{seg_no}: невідомий метод {mapping_method} — пропускаю')
+                except Exception as e:
+                    print(f'[PACK] CMAP seg#{seg_no}: помилка оновлення: {e}')
+
+                off = (next_ofs - 8) if next_ofs else 0
+
+            print('[PACK] Оновлено CMAP пар:', cmap_updated_pairs)
         except Exception as ex:
             print('ПОПЕРЕДЖЕННЯ: не вдалося оновити CWDH із JSON:', ex)
 
@@ -840,22 +965,22 @@ if __name__ == '__main__':
             tglp, sheets = parse_tglp_and_extract(raw, tglp_off, little, determine_platform(sig, little, version), sig)
             names = meta.get('sheet_png', [])
             png_ops = meta.get('png_ops') or {'rotate180': False, 'flipY': False}
-            # Зчитаємо необхідні поля з TGLP ще раз для sheet_data_off
-            p = tglp_off + 4
-            _section_size, p = read_u32(raw, p, little)
-            p += 2  # cell_w
-            p += 2  # cell_h
-            sheet_count = raw[p]; p += 1
-            p += 1  # max_char_width
-            sheet_size, p = read_u32(raw, p, little)
-            p += 2  # base_line
-            p += 2  # fmt
-            p += 2  # rows
-            p += 2  # cols
-            sheet_w, p = read_u16(raw, p, little)
-            sheet_h, p = read_u16(raw, p, little)
-            sheet_data_off, p = read_u32(raw, p, little)
-            print('[PACK] TGLP sheets:', int(sheet_count), 'sheet_size:', int(sheet_size), 'bytes; size:', int(sheet_w), 'x', int(sheet_h))
+            # Візьмемо параметри з уже розібраного TGLP
+            sheet_count = int(tglp.get('sheet_count', len(sheets)))
+            sheet_size = int(tglp.get('sheet_size', len(sheets[0]) if sheets else 0))
+            sheet_w = int(tglp.get('sheet_width', 0))
+            sheet_h = int(tglp.get('sheet_height', 0))
+            # Локатор початку даних аркушів у файлі (знайдемо послідовність першого аркуша)
+            def _locate_sheet_data_off(raw_bytes: bytes, sheet_bytes_list: list, hint_start: int) -> int:
+                if not sheet_bytes_list:
+                    return 0
+                s0 = sheet_bytes_list[0]
+                pos = raw_bytes.find(s0, max(0, hint_start))
+                if pos >= 0:
+                    return pos
+                return raw_bytes.find(s0)
+            sheet_data_off = _locate_sheet_data_off(raw, sheets, tglp_off)
+            print('[PACK] TGLP sheets:', sheet_count, 'sheet_size:', sheet_size, 'bytes; size:', sheet_w, 'x', sheet_h)
 
             def _find_sheet_path(i: int):
                 # 1) ім'я з font.json
